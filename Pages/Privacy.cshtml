@@ -1,0 +1,52 @@
+﻿@page
+@model PrivacyModel
+@{
+    ViewData["Title"] = "Movies";
+}
+<h1>@ViewData["Title"]</h1>
+
+<p></p>
+<a class='btn btn-primary brn-sm' href='/Movies/Create'>New movie</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Titel
+            </th>
+            <th>
+              Date
+            </th>
+            <th>
+                Genre
+            </th>
+            <th>
+                Restricting age
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Movie)
+        {
+            <tr>
+                <td>
+                    @item.Titel
+                </td>
+                <td>
+                    @item.Date
+                </td>
+                <td>
+                    @item.Genre
+                </td>
+                <td>
+                    @item.Restricting_age
+                </td>
+                <td>
+                    <a class='btn btn-primary brn-sm' href='/Movies/Edit?id='>Edit</a>
+                    <a class='btn btn-primary brn-sm' href='/Movies/Delete?id='>Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
