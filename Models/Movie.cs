@@ -14,8 +14,9 @@ namespace ZAAL_SQL.Models
         public int? Restricting_age { get; set; }
       public  bool? Watched { get; set; }
         public int? Rating { get; set; }
+        public string? Platform { get; set; }
 
-        public Movie(string? titel, int? date, string? genre, int? restricting_age, bool? watched, int? rating)
+        public Movie(string? titel, int? date, string? genre, int? restricting_age, bool? watched, int? rating, string? platform)
         {
             Titel = titel;
             Date = date;
@@ -23,6 +24,7 @@ namespace ZAAL_SQL.Models
             Restricting_age = restricting_age;
             Watched = watched;
             Rating = rating;
+            Platform = platform;
         }
     }
 }

@@ -20,10 +20,13 @@
             Release date
             </th>
             <th>
-            Genre
+                @Html.DisplayNameFor(model => model.Movie[0].Genre)
             </th>
             <th>
                 Restricting age
+            </th>
+            <th>
+                Platform
             </th>
             <th>
                 Watched
@@ -48,6 +51,9 @@
             <td>
              @Html.DisplayFor(modelItem => item.Restricting_age)
             </td>
+                <td>
+                    <p>@Html.DisplayFor(modelItem => item.Platform)</p>
+                </td>
                 <td>
   <form method="post" asp-page-handler="SetWatched" class="m-0 p-0">
     <input type="hidden" name="id" value="@item.ID" />
@@ -79,16 +85,15 @@
         else
         {
             <option value="true">yes</option>
-        }
+        }                                
     }
 </select>
   </form>
                 </td>
                 <td>
-                    <p>@Html.DisplayFor(modelItem => item.Rating) /10</p>
+                 <p>@Html.DisplayFor(modelItem => item.Rating) /10</p>
 				</td>
             <td>
-
                     <a class='btn btn-primary brn-sm' href='/Movies/Edit?id=@item.ID'>Edit</a>
                     <a class='btn btn-primary brn-sm' href='/Movies/Details?id=@item.ID'>Details</a>
                     <a class='btn btn-primary brn-sm' href='/Movies/Delete?id=@item.ID'>Delete</a>

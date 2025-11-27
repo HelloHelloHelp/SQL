@@ -37,12 +37,19 @@
                 <input asp-for="Movie.Restricting_age" class="form-control" />
                 <span asp-validation-for="Movie.Restricting_age" class="text-danger"></span>
             </div>
+                <br />
+            <div class="form-group">
+                <label asp-for="Movie.Platform" class="control-label"></label>
+                <input asp-for="Movie.Platform" class="form-control" />
+                <span asp-validation-for="Movie.Platform" class="text-danger"></span>
+            </div>
             <br>
             <div class="form-group">
                 <label asp-for="Movie.Rating" class="control-label"></label>
                 <input asp-for="Movie.Rating" class="form-control" />
                 <span asp-validation-for="Movie.Rating" class="text-danger"></span>
             </div>
+            
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
