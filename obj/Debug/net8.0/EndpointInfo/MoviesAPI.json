@@ -108,6 +108,15 @@
           "restricting_age": {
             "type": "string",
             "nullable": true
+          },
+          "watched": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "rating": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
           }
         },
         "additionalProperties": false

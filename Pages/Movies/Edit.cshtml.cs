@@ -41,6 +41,7 @@ namespace ZAAL_SQL.Pages.Movies
                                 movie.Date = reader.GetString("Date");
                                 movie.Genre = reader.GetString("Genre");
                                 movie.Restricting_age = reader.GetString("Restricting_age");
+                                movie.Rating = reader.GetInt32("Rating");
                             }
                         }
                     }
@@ -57,6 +58,7 @@ namespace ZAAL_SQL.Pages.Movies
             movie.Date = Request.Form["Date"];
             movie.Genre = Request.Form["Genre"];
             movie.Restricting_age = Request.Form["Restricting_age"];
+            movie.Rating = int.Parse(Request.Form["Rating"]);
 
             if (movie.Titel.Length == 0 || movie.Date.Length == 0 || movie.Genre.Length == 0 ||
                 movie.Restricting_age.Length == 0)
@@ -80,6 +82,7 @@ namespace ZAAL_SQL.Pages.Movies
                         command.Parameters.AddWithValue("@Genre", movie.Genre);
                         command.Parameters.AddWithValue("@Restricting_age", movie.Restricting_age);
                         command.Parameters.AddWithValue("@ID", movie.ID);
+                        command.Parameters.AddWithValue("@Stars", movie.Rating);
                         command.ExecuteNonQuery();
                     }
                 }

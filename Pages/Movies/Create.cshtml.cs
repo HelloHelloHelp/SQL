@@ -27,6 +27,7 @@ namespace ZAAL_SQL.Pages.Movies
             movie.Date = Request.Form["Date"];
             movie.Genre = Request.Form["Genre"];
             movie.Restricting_age = Request.Form["Restricting_age"];
+            movie.Rating = Request.Form["Rating"].ToString() == "" ? 0 : Convert.ToInt32(Request.Form["Rating"]);
 
             if (movie.Titel.Length == 0 || movie.Date.Length == 0 || movie.Genre.Length == 0 ||
                 movie.Restricting_age.Length == 0)
@@ -50,7 +51,7 @@ namespace ZAAL_SQL.Pages.Movies
                         command.Parameters.AddWithValue("@Date", movie.Date);
                         command.Parameters.AddWithValue("@Genre", movie.Genre);
                         command.Parameters.AddWithValue("@Restricting_age", movie.Restricting_age);
-
+                        command.Parameters.AddWithValue("@Rating", movie.Rating);
                         command.ExecuteNonQuery();
                     }
                 }

@@ -31,6 +31,8 @@ namespace MoviesAPI.Repository
                             movie.Date = reader.GetString("Date");
                             movie.Genre = reader.GetString("Genre");
                             movie.Restricting_age = reader.GetString("Restricting_age");
+                            movie.Watched = reader.GetBoolean("Watched");
+                            movie.Rating = reader.GetInt32("Rating");
                             movies.Add(movie);
                         }
                     }
