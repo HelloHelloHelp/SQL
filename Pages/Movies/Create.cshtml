@@ -5,34 +5,42 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
-
-<h4>Movie</h4>
+<h1>Add page</h1>
+<p>Add a new movie here</p>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Movie.Titel" class="control-label"></label>
+               <p>Title</p>
                 <input asp-for="Movie.Titel" class="form-control" />
                 <span asp-validation-for="Movie.Titel" class="text-danger"></span>
             </div>
+            <br>
             <div class="form-group">
-                <label asp-for="Movie.Date" class="control-label"></label>
+                <p>Release date</p>
                 <input asp-for="Movie.Date" class="form-control" />
                 <span asp-validation-for="Movie.Date" class="text-danger"></span>
             </div>
+            <br>
             <div class="form-group">
-                <label asp-for="Movie.Genre" class="control-label"></label>
+                <p>Genre</p>
                 <input asp-for="Movie.Genre" class="form-control" />
                 <span asp-validation-for="Movie.Genre" class="text-danger"></span>
             </div>
+            <br>
             <div class="form-group">
-                <label asp-for="Movie.Restricting_age" class="control-label"></label>
+                <p>Restricting age</p>
                 <input asp-for="Movie.Restricting_age" class="form-control" />
                 <span asp-validation-for="Movie.Restricting_age" class="text-danger"></span>
             </div>
+            <br>
+            <div class="form-group">
+            <label asp-for="Movie.Rating" class="control-label"></label>
+            <input asp-for="Movie.Rating" class="form-control" />
+            <span asp-validation-for="Movie.Rating" class="text-danger"></span>
+		</div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>

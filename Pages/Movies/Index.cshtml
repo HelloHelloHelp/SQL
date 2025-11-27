@@ -14,18 +14,23 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Movie[0].Titel)
+             Title
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Movie[0].Date)
+            Release date
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Movie[0].Genre)
+            Genre
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Movie[0].Restricting_age)
+                Restricting age
             </th>
-            <th></th>
+            <th>
+                Watched
+            </th>
+			<th>
+                Rating
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -41,14 +46,54 @@
                 @Html.DisplayFor(modelItem => item.Genre)
             </td>
             <td>
-                    @Html.DisplayFor(modelItem => item.Restricting_age)
+             @Html.DisplayFor(modelItem => item.Restricting_age)
             </td>
+                <td>
+  <form method="post" asp-page-handler="SetWatched" class="m-0 p-0">
+    <input type="hidden" name="id" value="@item.ID" />
+    <select name="watched" class="form-select" onchange="this.form.submit()">
+      
+    @{
+        if (item.Watched == null)
+        {
+            <option value="" selected>----</option>
+        }
+        else
+        {
+            <option value="">----</option>
+        }
+
+        if (item.Watched == false)
+        {
+            <option value="false" selected>no</option>
+        }
+        else
+        {
+            <option value="false">no</option>
+        }
+
+        if (item.Watched == true)
+        {
+            <option value="true" selected>yes</option>
+        }
+        else
+        {
+            <option value="true">yes</option>
+        }
+    }
+</select>
+  </form>
+                </td>
+                <td>
+                    <p>@Html.DisplayFor(modelItem => item.Rating) /10</p>
+				</td>
             <td>
-               
+
                     <a class='btn btn-primary brn-sm' href='/Movies/Edit?id=@item.ID'>Edit</a>
-                    <a class='btn btn-primary brn-sm' href='/Movies/Delete?id=@item.ID'>Delete</a>
                     <a class='btn btn-primary brn-sm' href='/Movies/Details?id=@item.ID'>Details</a>
-                
+                    <a class='btn btn-primary brn-sm' href='/Movies/Delete?id=@item.ID'>Delete</a>
+                  
+				</td>
         </tr>
 }
     </tbody>

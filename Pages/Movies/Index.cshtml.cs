@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using ZAAL_SQL.Data;
 using ZAAL_SQL.Models;
+using static System.Net.WebRequestMethods;
 
 namespace ZAAL_SQL.Pages.Movies
 {
@@ -25,5 +26,19 @@ namespace ZAAL_SQL.Pages.Movies
         {
             Movie = await _context.Movie.ToListAsync();
         }
+        
+
+public async Task<IActionResult> OnPostSetWatchedAsync(int id, bool? watched)
+{
+    var movie = await _context.Movie.FindAsync(id);
+    if (movie != null)
+    {
+        movie.Watched = watched;
+        await _context.SaveChangesAsync();
     }
+    return RedirectToPage();
+}
+    }
+
+    
 }

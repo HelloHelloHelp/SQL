@@ -14,28 +14,7 @@ namespace ZAAL_SQL.Pages
 {
     public class PrivacyModel : PageModel
     {
-        private readonly ILogger<PrivacyModel> _logger;
-        private readonly ZAAL_SQLContext _context;
-
-        public IList<Movie> Movie { get; set; } = new List<Movie>();
-
-        public PrivacyModel(ILogger<PrivacyModel> logger, ZAAL_SQLContext context)
-        {
-            _logger = logger;
-            _context = context;
-        }
-
-        public async Task OnGetAsync()
-        {
-            try
-            {
-                Movie = await _context.Movie.AsNoTracking().ToListAsync();
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Loading movies failed.c");
-            }
-        }
+        
     }
 
 }
