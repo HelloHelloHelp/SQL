@@ -1,4 +1,5 @@
-﻿using System.Data.SqlClient;
+﻿using System.Data;
+using System.Data.SqlClient;
 using Microsoft.Data.SqlClient;
 namespace MoviesAPI.Repository
 {
@@ -11,7 +12,7 @@ namespace MoviesAPI.Repository
         
       public List<Models.Movie> GetMovies()
         {
-            string constring = "Data Source=localhost;Initial Catalog=movies;Integrated Security=True;Encrypt=True;Trust Server Certificate=True";
+            string constring = "Data Source=localhost;Initial Catalog=movies;Integrated Security=True;Trust Server Certificate=True";
             using (SqlConnection connection = new SqlConnection(constring))
             {
                 connection.Open();
@@ -24,12 +25,12 @@ namespace MoviesAPI.Repository
                     {
                         while (reader.Read())
                         {
-                            Models.Movie movie = new Models.Movie(
-                                reader["Titel"].ToString(),
-                                reader["Date"].ToString(),
-                                reader["Genre"].ToString(),
-                                Convert.ToInt32(reader["Restricting_age"])
-                            );
+                            Models.Movie movie = new Models.Movie();
+                            movie.ID = reader.GetInt32("ID");
+                            movie.Titel = reader.GetString("Titel");
+                            movie.Date = reader.GetString("Date");
+                            movie.Genre = reader.GetString("Genre");
+                            movie.Restricting_age = reader.GetString("Restricting_age");
                             movies.Add(movie);
                         }
                     }

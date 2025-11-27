@@ -1,0 +1,43 @@
+﻿@page
+@model ZAAL_SQL.Pages.Movies.IndexModel
+
+@{
+}
+
+<br>
+<h2>List of movies</h2>
+<a class='btn-primary btn-primary btn-sm' href="Movies/Create">New Movie</a>
+<table class="table">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Titel</th>
+			<th>Date</th>
+			<th>Genre</th>
+			<th>Restricting age</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+
+		@foreach (var movie in Model.ListMovies)
+		{
+			<tr>
+				<td>@movie.ID</td>
+				<td>@movie.Titel</td>
+				<td>@movie.Date</td>
+				<td>@movie.Genre</td>
+				<td>@movie.Restricting_age</td>
+
+				<td>
+					<a class='btn-primary btn-primary btn-sm' href="/Movies/Edit?id=@movie.ID">Edit</a>
+					<a class='btn-primary btn-primary btn-sm' href="/Movies/Delete?id=@movie.ID">Delete</a>
+</td>
+				</tr>
+		}
+		</tbody>
+	</table>
+				
+		
+	
+

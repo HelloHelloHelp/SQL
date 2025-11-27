@@ -78,3 +78,10 @@ C:\Users\ZAAL\source\repos\MoviesAPI\MoviesAPI\obj\Debug\net8.0\refint\MoviesAPI
 C:\Users\ZAAL\source\repos\MoviesAPI\MoviesAPI\obj\Debug\net8.0\MoviesAPI.pdb
 C:\Users\ZAAL\source\repos\MoviesAPI\MoviesAPI\obj\Debug\net8.0\MoviesAPI.genruntimeconfig.cache
 C:\Users\ZAAL\source\repos\MoviesAPI\MoviesAPI\obj\Debug\net8.0\ref\MoviesAPI.dll
+C:\Users\ZAAL\source\repos\MoviesAPI\MoviesAPI\obj\Debug\net8.0\MoviesAPI.RazorAssemblyInfo.cache
+C:\Users\ZAAL\source\repos\MoviesAPI\MoviesAPI\obj\Debug\net8.0\MoviesAPI.RazorAssemblyInfo.cs
+C:\Users\ZAAL\source\repos\MoviesAPI\MoviesAPI\obj\Debug\net8.0\MoviesAPI.sourcelink.json
+C:\Users\ZAAL\source\repos\MoviesAPI\MoviesAPI\bin\Debug\net8.0\MoviesAPI.staticwebassets.runtime.json
+C:\Users\ZAAL\source\repos\MoviesAPI\MoviesAPI\obj\Debug\net8.0\scopedcss\Pages\Shared\_Layout.cshtml.rz.scp.css
+C:\Users\ZAAL\source\repos\MoviesAPI\MoviesAPI\obj\Debug\net8.0\scopedcss\Shared\_Layout.cshtml.rz.scp.css
+C:\Users\ZAAL\source\repos\MoviesAPI\MoviesAPI\obj\Debug\net8.0\scopedcss\projectbundle\MoviesAPI.bundle.scp.css

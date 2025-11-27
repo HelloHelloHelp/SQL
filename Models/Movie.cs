@@ -1,4 +1,6 @@
-﻿namespace MoviesAPI.Models
+﻿using static System.Runtime.InteropServices.JavaScript.JSType;
+
+namespace MoviesAPI.Models
 {
     public class Movie
     {
@@ -6,14 +8,21 @@
         public string? Titel { get; set; }
         public string? Date { get; set; }
         public string? Genre { get; set; }
-        public int Restricting_age { get; set; }
+        public string? Restricting_age { get; set; }
 
-        public Movie( string? titel, string? date, string? genre, int restricting_age)
+        public Movie()
         {
-            Titel = titel;
-            Date = date;
-            Genre = genre;
-            Restricting_age = restricting_age;
+           
         }
+
     }
 }
+
+
+/*int id, string? titel, string? date, string? genre, int restricting_age
+
+     ID = id;
+Titel = titel;
+Date = date;
+Genre = genre;
+Restricting_age = restricting_age;*/
