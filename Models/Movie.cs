@@ -11,18 +11,20 @@ namespace MoviesAPI.Models
         public int ID { get; set; }
         public string? Titel { get; set; }
 
-        public string? Date { get; set; }
+        public int? Date { get; set; }
 
         public string? Genre { get; set; }
-        public string? Restricting_age { get; set; }
-         public bool? Watched { get; set; }
+        public int? Restricting_age { get; set; }
+        public string? Platform { get; set; }
+        public bool? Watched { get; set; }
       public  int? Rating { get; set; }
-        public Movie(string? titel, string? date, string? genre, string? restricting_age, bool? watched, int? rating)
+        public Movie(string? titel, int? date, string? genre, int? restricting_age, string? platform, bool? watched, int? rating)
         {
             Titel = titel;
             Date = date;
             Genre = genre;
             Restricting_age = restricting_age;
+            Platform = Platform;
             Watched = watched;
             Rating = rating;
         }

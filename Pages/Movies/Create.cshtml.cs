@@ -24,17 +24,11 @@ namespace ZAAL_SQL.Pages.Movies
         public void OnPost()
         {
             movie.Titel = Request.Form["Titel"];
-            movie.Date = Request.Form["Date"];
+            movie.Date = Request.Form["Date"].ToString() == "" ? 0 : Convert.ToInt32(Request.Form["Date"]);
             movie.Genre = Request.Form["Genre"];
-            movie.Restricting_age = Request.Form["Restricting_age"];
+            movie.Restricting_age = Request.Form["Restricting_age"].ToString() == "" ? 0 : Convert.ToInt32(Request.Form["Restrcting_age"]);
+            movie.Platform = Request.Form["Platform"];
             movie.Rating = Request.Form["Rating"].ToString() == "" ? 0 : Convert.ToInt32(Request.Form["Rating"]);
-
-            if (movie.Titel.Length == 0 || movie.Date.Length == 0 || movie.Genre.Length == 0 ||
-                movie.Restricting_age.Length == 0)
-            {
-              errorMessage = ("All fields are required!");
-                return;
-            }
 
             try
             {
@@ -51,6 +45,7 @@ namespace ZAAL_SQL.Pages.Movies
                         command.Parameters.AddWithValue("@Date", movie.Date);
                         command.Parameters.AddWithValue("@Genre", movie.Genre);
                         command.Parameters.AddWithValue("@Restricting_age", movie.Restricting_age);
+                        command.Parameters.AddWithValue("@Platform", movie.Platform);
                         command.Parameters.AddWithValue("@Rating", movie.Rating);
                         command.ExecuteNonQuery();
                     }
@@ -61,10 +56,6 @@ namespace ZAAL_SQL.Pages.Movies
                 errorMessage = ex.Message;
                 return;
             }
-
-
-            movie.Titel = ""; movie.Date = ""; movie.Genre = ""; movie.Restricting_age = "";
-            successMessage = "New Movie Added!";
             Response.Redirect("/Movies/Index");
         }
     }

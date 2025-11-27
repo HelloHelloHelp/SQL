@@ -38,9 +38,9 @@ namespace ZAAL_SQL.Pages.Movies
                             {
                                 movie.ID =  reader.GetInt32("ID");
                                 movie.Titel = reader.GetString("Titel");
-                                movie.Date = reader.GetString("Date");
+                                movie.Date = reader.GetInt32("Date");
                                 movie.Genre = reader.GetString("Genre");
-                                movie.Restricting_age = reader.GetString("Restricting_age");
+                                movie.Restricting_age = reader.GetInt32("Restricting_age");
                                 movie.Rating = reader.GetInt32("Rating");
                             }
                         }
@@ -55,17 +55,11 @@ namespace ZAAL_SQL.Pages.Movies
         public void OnPost()
         {
             movie.Titel = Request.Form["Titel"];
-            movie.Date = Request.Form["Date"];
+            movie.Date = int.Parse(Request.Form["Date"]);
             movie.Genre = Request.Form["Genre"];
-            movie.Restricting_age = Request.Form["Restricting_age"];
+            movie.Restricting_age = int.Parse(Request.Form["Restricting_age"]);
+            movie.Platform = Request.Form["Platform"];
             movie.Rating = int.Parse(Request.Form["Rating"]);
-
-            if (movie.Titel.Length == 0 || movie.Date.Length == 0 || movie.Genre.Length == 0 ||
-                movie.Restricting_age.Length == 0)
-            {
-                errorMessage = ("All fields are required!");
-                return;
-            }
 
             try             {
                 String connectionString = "Data Source=localhost;Initial Catalog=movies;Integrated Security=True;Encrypt=True;Trust Server Certificate=True";
@@ -81,6 +75,8 @@ namespace ZAAL_SQL.Pages.Movies
                         command.Parameters.AddWithValue("@Date", movie.Date);
                         command.Parameters.AddWithValue("@Genre", movie.Genre);
                         command.Parameters.AddWithValue("@Restricting_age", movie.Restricting_age);
+                        command.Parameters.AddWithValue("@Watched", movie.Watched);
+                        command.Parameters.AddWithValue("@Platform", movie.Platform);
                         command.Parameters.AddWithValue("@ID", movie.ID);
                         command.Parameters.AddWithValue("@Stars", movie.Rating);
                         command.ExecuteNonQuery();

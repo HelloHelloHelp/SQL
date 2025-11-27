@@ -28,9 +28,10 @@ namespace MoviesAPI.Repository
                             Models.Movie movie = new Models.Movie();
                             movie.ID = reader.GetInt32("ID");
                             movie.Titel = reader.GetString("Titel");
-                            movie.Date = reader.GetString("Date");
+                            movie.Date = reader.GetInt32("Date");
                             movie.Genre = reader.GetString("Genre");
-                            movie.Restricting_age = reader.GetString("Restricting_age");
+                            movie.Restricting_age = reader.GetInt32("Restricting_age");
+                            movie.Platform = reader.GetString("Platform");
                             movie.Watched = reader.GetBoolean("Watched");
                             movie.Rating = reader.GetInt32("Rating");
                             movies.Add(movie);

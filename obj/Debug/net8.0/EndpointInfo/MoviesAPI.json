@@ -98,7 +98,8 @@
             "nullable": true
           },
           "date": {
-            "type": "string",
+            "type": "integer",
+            "format": "int32",
             "nullable": true
           },
           "genre": {
@@ -106,6 +107,11 @@
             "nullable": true
           },
           "restricting_age": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "platform": {
             "type": "string",
             "nullable": true
           },
