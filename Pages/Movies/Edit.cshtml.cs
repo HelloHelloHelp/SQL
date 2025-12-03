@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Data.SqlClient;
 
-namespace ZAAL_SQL.Pages.Movies
+namespace MoviesAPI.Pages.Movies
 {
 
     public class EditModel : PageModel

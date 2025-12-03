@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Data.SqlClient;
 
-namespace ZAAL_SQL.Pages.Movies
+namespace MoviesAPI.Pages.Movies
 {
     public class IndexModel : PageModel
     {

@@ -1,5 +1,5 @@
 ﻿@page
-@model MoviesAPI.Pages.Movies.EditModel
+@model MoviesAPI.Pages.Series.EditModel
 
 @{
     ViewData["Title"] = "Edit";
@@ -18,41 +18,47 @@
 <hr />
 
 <form method="post">
-    <input type="hidden" name="ID" value="@Model.movie.ID">
+    <input type="hidden" name="ID" value="@Model.serie.ID">
     <div class="col-mb-3">
         <label class="col-sm-3 col-form-label">Titel</label>
         <div class="col-sm-6">
-            <input type="text" class="form-control" name="Titel" value="@Model.movie.Titel">
+            <input type="text" class="form-control" name="Titel" value="@Model.serie.Titel">
         </div>
     </div>
     <div class="col-mb-3">
         <label class="col-sm-3 col-form-label">Titel</label>
         <div class="col-sm-6">
-            <input type="text" class="form-control" name="Date" value="@Model.movie.Date">
+            <input type="text" class="form-control" name="Date" value="@Model.serie.Date">
         </div>
     </div>
     <div class="col-mb-3">
         <label class="col-sm-3 col-form-label">Titel</label>
         <div class="col-sm-6">
-            <input type="text" class="form-control" name="Genre" value="@Model.movie.Genre">
+            <input type="text" class="form-control" name="Genre" value="@Model.serie.Genre">
         </div>
     </div>
     <div class="col-mb-3">
         <label class="col-sm-3 col-form-label">Titel</label>
         <div class="col-sm-6">
-            <input type="text" class="form-control" name="Restricting_age" value="@Model.movie.Restricting_age">
+            <input type="text" class="form-control" name="Restricting_age" value="@Model.serie.Restricting_age">
         </div>
     </div>
     <div class="col-mb-3">
         <label class="col-sm-3 col-form-label">Titel</label>
         <div class="col-sm-6">
-            <input type="text" class="form-control" name="Platform" value="@Model.movie.Platform">
+            <input type="text" class="form-control" name="Seasons" value="@Model.serie.Seasons">
         </div>
     </div>
     <div class="col-mb-3">
         <label class="col-sm-3 col-form-label">Titel</label>
         <div class="col-sm-6">
-            <input type="text" class="form-control" name="Rating" value="@Model.movie.Rating">
+            <input type="text" class="form-control" name="Platform" value="@Model.serie.Platform">
+        </div>
+    </div>
+    <div class="col-mb-3">
+        <label class="col-sm-3 col-form-label">Titel</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="Rating" value="@Model.serie.Rating">
         </div>
     </div>
     <div class="row mb-3">
@@ -68,5 +74,7 @@
 
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

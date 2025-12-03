@@ -9,7 +9,7 @@ using Microsoft.Data.SqlClient;
 using Microsoft.OpenApi.MicrosoftExtensions;
 using MoviesAPI.Models;
 
-namespace ZAAL_SQL.Pages.Movies
+namespace MoviesAPI.Pages.Movies
 {
     public class CreateModel : PageModel
     {

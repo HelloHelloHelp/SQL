@@ -1,0 +1,50 @@
+﻿@page
+@model MoviesAPI.Pages.Series.IndexModel
+
+@{
+}
+
+<br>
+<h2>List of series</h2>
+<a class='btn-primary btn-primary btn-sm' href="Movies/Create">New serie</a>
+<table class="table">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Titel</th>
+			<th>Date</th>
+			<th>Genre</th>
+			<th>Restricting age</th>
+			<th>Seasons</th>
+			<th>Platform</th>
+			<th>Watched</th>
+			<th>Rating</th>
+		</tr>
+	</thead>
+	<tbody>
+
+		@foreach (var serie in Model.ListSeries)
+		{
+			<tr>
+				<td>@serie.ID</td>
+				<td>@serie.Titel</td>
+				<td>@serie.Date</td>
+				<td>@serie.Genre</td>
+				<td>@serie.Restricting_age</td>
+				<th>@serie.Seasons</th>
+				<td>@serie.Platform</td>
+				<td>@serie.Watched</td>
+				<td>@serie.Rating</td>
+
+				<td>
+					<a class='btn-primary btn-primary btn-sm' href="/Movies/Edit?id=@serie.ID">Edit</a>
+					<a class='btn-primary btn-primary btn-sm' href="/Movies/Delete?id=@serie.ID">Delete</a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>
+
+
+
+
