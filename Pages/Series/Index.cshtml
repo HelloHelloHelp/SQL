@@ -1,4 +1,129 @@
 ﻿@page
-@model ZAAL_SQL.Pages.Shows.IndexModel
+@model ZAAL_SQL.Pages.Series.IndexModel
+
 @{
+    ViewData["Title"] = "Series";
 }
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    <a class='btn btn-primary brn-sm' href='/Series/Create'>Add a serie</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Title
+            </th>
+            <th>
+                Release date
+            </th>
+            <th>
+             Genre
+            </th>
+            <th>
+                Restricting age
+            </th>
+            <th>
+               Seasons
+            </th>
+            <th>
+                Platform
+            </th>
+            <th>
+                Watched
+            </th>
+            <th>
+                Rating
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Serie)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Titel)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Genre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Restricting_age)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Seasons)
+                </td>
+                <td>
+                    <p>@Html.DisplayFor(modelItem => item.Platform)</p>
+                </td>
+                <td>
+                    <form method="post" asp-page-handler="SetWatched" class="m-0 p-0">
+                        <input type="hidden" name="id" value="@item.ID" />
+                        <select name="watched" class="form-select" onchange="this.form.submit()">
+                            @{
+                                var val = item.Watched;
+                                if (string.IsNullOrEmpty(val))
+                                {
+                                    <option value="" selected>----</option>
+                                    ;
+                                }
+                                else
+                                {
+                                    <option value="">----</option>
+                                    ;
+                                }
+
+                                if (val == "havent")
+                                {
+                                    <option value="havent" selected>havent</option>
+                                    ;
+                                }
+                                else
+                                {
+                                    <option value="havent">havent</option>
+                                    ;
+                                }
+
+                                if (val == "done")
+                                {
+                                    <option value="done" selected>done</option>
+                                    ;
+                                }
+                                else
+                                {
+                                    <option value="done">done</option>
+                                    ;
+                                }
+
+                                if (val == "started")
+                                {
+                                    <option value="started" selected>started</option>
+                                    ;
+                                }
+                                else
+                                {
+                                    <option value="started">started</option>
+                                    ;
+                                }
+                            }
+                        </select>
+                    </form>
+                </td>
+                <td>
+                    <p>@Html.DisplayFor(modelItem => item.Rating) /10</p>
+                </td>
+                <td>
+                    <a class='btn btn-primary brn-sm' href='/Series/Edit?id=@item.ID'>Edit</a>
+                    <a class='btn btn-primary brn-sm' href='/Series/Details?id=@item.ID'>Details</a>
+                    <a class='btn btn-primary brn-sm' href='/Series/Delete?id=@item.ID'>Delete</a>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

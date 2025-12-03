@@ -1,12 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using ZAAL_SQL.Data;
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 builder.Services.AddRazorPages();
+
 builder.Services.AddDbContext<ZAAL_SQLContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("ZAAL_SQLContext") ?? throw new InvalidOperationException("Connection string 'ZAAL_SQLContext' not found.")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("ZAAL_SQLContext")));
+
+builder.Services.AddDbContext<Context>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("SeriesContext"))); // points to DB that contains serie_info
 
 var app = builder.Build();
 

@@ -20,7 +20,7 @@
             Release date
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Movie[0].Genre)
+             Genre
             </th>
             <th>
                 Restricting age
@@ -55,40 +55,57 @@
                     <p>@Html.DisplayFor(modelItem => item.Platform)</p>
                 </td>
                 <td>
-  <form method="post" asp-page-handler="SetWatched" class="m-0 p-0">
-    <input type="hidden" name="id" value="@item.ID" />
-    <select name="watched" class="form-select" onchange="this.form.submit()">
-      
-    @{
-        if (item.Watched == null)
-        {
-            <option value="" selected>----</option>
-        }
-        else
-        {
-            <option value="">----</option>
-        }
+                    <form method="post" asp-page-handler="SetWatched" class="m-0 p-0">
+                        <input type="hidden" name="id" value="@item.ID" />
+                        <select name="watched" class="form-select" onchange="this.form.submit()">
+                            @{
+                                var val = item.Watched;
+                                if (string.IsNullOrEmpty(val))
+                                {
+                                    <option value="" selected>----</option>
+                                    ;
+                                }
+                                else
+                                {
+                                    <option value="">----</option>
+                                    ;
+                                }
 
-        if (item.Watched == false)
-        {
-            <option value="false" selected>no</option>
-        }
-        else
-        {
-            <option value="false">no</option>
-        }
+                                if (val == "havent")
+                                {
+                                    <option value="havent" selected>havent</option>
+                                    ;
+                                }
+                                else
+                                {
+                                    <option value="havent">havent</option>
+                                    ;
+                                }
 
-        if (item.Watched == true)
-        {
-            <option value="true" selected>yes</option>
-        }
-        else
-        {
-            <option value="true">yes</option>
-        }                                
-    }
-</select>
-  </form>
+                                if (val == "done")
+                                {
+                                    <option value="done" selected>done</option>
+                                    ;
+                                }
+                                else
+                                {
+                                    <option value="done">done</option>
+                                    ;
+                                }
+
+                                if (val == "started")
+                                {
+                                    <option value="started" selected>started</option>
+                                    ;
+                                }
+                                else
+                                {
+                                    <option value="started">started</option>
+                                    ;
+                                }
+                            }
+                        </select>
+                    </form>
                 </td>
                 <td>
                  <p>@Html.DisplayFor(modelItem => item.Rating) /10</p>
