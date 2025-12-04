@@ -1,5 +1,5 @@
 ﻿@page
-@model ZAAL_SQL.Pages.Movies.IndexModel
+@model ZAAL_SQL.Pages.LFMAS.LFM.IndexModel
 @{
     ViewData["Title"] = "Recommends movies";
 }
@@ -26,44 +26,41 @@
             <th>
                 Platform
             </th>
-            <th>
-                Watched
-            </th>
 			<th>
                 Rating
             </th>
         </tr>
     </thead>
     <tbody>
+        @foreach (var item in Model.movies)
+        {
+            <tr>
 
-        <tr>
-            <td>
-               
-            </td>
-            <td>
-               
-            </td>
-            <td>
-               
-            </td>
-            <td>
-            
-            </td>
                 <td>
-                  
+                    @Html.DisplayFor(modelItem => item.Titel)
                 </td>
                 <td>
-                  
+                    @Html.DisplayFor(modelItem => item.Date)
                 </td>
                 <td>
-                 <p> /10</p>
-				</td>
-            <td>
-                <a class="btn btn-primary btn-sm" onclick="alert('Added to your movie list!'); return false;">
-                    Add
-                </a>
+                    @Html.DisplayFor(modelItem => item.Genre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Restricting_age)
+                </td>
+                <td>
+                    <p>@Html.DisplayFor(modelItem => item.Platform)</p>
+                </td>
 
-            </td>
-        </tr>
+                <td>
+                    <p>/10</p>
+                </td>
+                <td>
+                    <a class="btn btn-primary btn-sm" onclick="alert('Added to your movie list!');">
+                        Add
+                    </a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

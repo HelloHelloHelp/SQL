@@ -13,19 +13,15 @@ namespace ZAAL_SQL.Models
         public string? Genre { get; set; }
         public int? Restricting_age { get; set; }
         public int? Seasons { get; set; }
-        public string? Watched { get; set; }
-        public int? Rating { get; set; }
         public string? Platform { get; set; }
 
-        public SerieModel(string? titel, int? date, string? genre, int? restricting_age, int? seasons, string? watched, int? rating, string? platform)
+        public SerieModel(string? titel, int? date, string? genre, int? restricting_age, int? seasons, string? platform)
         {
             Titel = titel;
             Date = date;
             Genre = genre;
             Restricting_age = restricting_age;
             Seasons = seasons;
-            Watched = watched;
-            Rating = rating;
             Platform = platform;
         }
     }

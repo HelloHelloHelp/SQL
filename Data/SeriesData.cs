@@ -1,21 +1,21 @@
-﻿using System;
+﻿
 using Microsoft.EntityFrameworkCore;
 using ZAAL_SQL.Models;
 
 namespace ZAAL_SQL.Data
 {
-    public class SeriesData : DbContext
+    public class SeriesDataContext: DbContext
     {
-        public SeriesData(DbContextOptions<Context> options)
+        public SeriesDataContext(DbContextOptions<SeriesDataContext> options)
             : base(options)
         {
         }
 
-        public DbSet<SeriesData> seriesData { get; set; } = default!;
+        public DbSet<SerieModel> SerieModel { get; set; } = default!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Serie>().ToTable("LFS", "dbo");
+            modelBuilder.Entity<SerieModel>().ToTable("LFS", "dbo");
 
             base.OnModelCreating(modelBuilder);
         }

@@ -10,6 +10,12 @@ builder.Services.AddDbContext<ZAAL_SQLContext>(options =>
 builder.Services.AddDbContext<Context>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("SeriesContext"))); // points to DB that contains serie_info
 
+builder.Services.AddDbContext<SeriesDataContext>(options =>
+    options.UseSqlServer( builder.Configuration.GetConnectionString("SeriesDataContext")));
+
+builder.Services.AddDbContext<MoviesDataContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("MoviesDataContext")));
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

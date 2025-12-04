@@ -4,18 +4,18 @@ using ZAAL_SQL.Models;
 
 namespace ZAAL_SQL.Data
 {
-    public class MoviesData : DbContext
+    public class MoviesDataContext: DbContext
     {
-        public MoviesData(DbContextOptions<Context> options)
+        public MoviesDataContext(DbContextOptions<MoviesDataContext> options)
             : base(options)
         {
         }
 
-        public DbSet<MoviesData> moviesData { get; set; } = default!;
+        public DbSet<MovieModel> MovieModel { get; set; } = default!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Serie>().ToTable("LFM", "dbo");
+            modelBuilder.Entity<MovieModel>().ToTable("LFM", "dbo");
 
             base.OnModelCreating(modelBuilder);
         }

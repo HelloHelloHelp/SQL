@@ -1,5 +1,5 @@
 ﻿@page
-@model ZAAL_SQL.Pages.Series.IndexModel
+@model ZAAL_SQL.Pages.LFMAS.LFS.IndexModel
 
 @{
     ViewData["Title"] = "Recommends series";
@@ -31,44 +31,43 @@
                 Platform
             </th>
             <th>
-                Watched
-            </th>
-            <th>
                 Rating
             </th>
         </tr>
     </thead>
     <tbody>
+        @foreach (var item in Model.Series)
+        {
             <tr>
+
                 <td>
-                 
+                    @Html.DisplayFor(modelItem => item.Titel)
                 </td>
                 <td>
-                   
+                    @Html.DisplayFor(modelItem => item.Date)
                 </td>
                 <td>
-                 
+                    @Html.DisplayFor(modelItem => item.Genre)
                 </td>
                 <td>
-                  
+                    @Html.DisplayFor(modelItem => item.Restricting_age)
                 </td>
                 <td>
-                 
+                    @Html.DisplayFor(modelItem => item.Seasons)
                 </td>
                 <td>
-                  
+                    <p>@Html.DisplayFor(modelItem => item.Platform)</p>
                 </td>
-                <td>
-                   
-                </td>
+
                 <td>
                     <p>/10</p>
                 </td>
-            <td>
-                <a class="btn btn-primary btn-sm" onclick="alert('Added to your serie list!'); return false;">
-                    Add
-                </a>
-            </td>
+                <td>
+                    <a class="btn btn-primary btn-sm" onclick="alert('Added to your serie list!');">
+                        Add
+                    </a>
+                </td>
             </tr>
+        }
     </tbody>
 </table>
