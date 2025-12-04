@@ -32,7 +32,6 @@ namespace MoviesAPI.Repository
                             Srecommend.Genre = reader.GetString("Genre");
                             Srecommend.Restricting_age = reader.GetInt32("Restricting_age");
                             Srecommend.Platform = reader.GetString("Platform");
-                            Srecommend.Rating = reader.GetInt32("Rating");
                             Srecommends.Add(Srecommend);
                         }
                     }

@@ -12,13 +12,13 @@
 			<th>Genre</th>
 			<th>Restricting age</th>
 			<th>Platform</th>
-			<th>Watched</th>
+			<th>Seasons</th>
 			<th>Rating</th>
 		</tr>
 	</thead>
 	<tbody>
 
-		@foreach (var movie in Model.Series)
+		@foreach (var movie in Model.Movies)
 		{
 			<tr>
 				<td>@movie.ID</td>
@@ -26,12 +26,36 @@
 				<td>@movie.Date</td>
 				<td>@movie.Genre</td>
 				<td>@movie.Restricting_age</td>
-				<td>@movie.Platform</td>
-				<td>@movie.Rating</td>
+				<th>@movie.Rating</th>
 			</tr>
 		}
 
 	</tbody>
 </table>
 
-<h2>List of series</h2>
+<h2>List of movies</h2>
+<table class="table">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Titel</th>
+			<th>Date</th>
+			<th>Genre</th>
+			<th>Restricting age</th>
+			<th>Platform</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var serie in Model.Series)
+		{
+			<tr>
+			<td>@serie.ID</td>
+				<td>@serie.Titel</td>
+				<td>@serie.Date</td>
+				<td>@serie.Genre</td>
+				<td>@serie.Restricting_age</td>
+				<td>@serie.Platform</td>
+		       <th>@serie.Rating</th>
+			</tr>
+		}
+	</tbody>
