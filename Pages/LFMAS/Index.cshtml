@@ -1,0 +1,37 @@
+﻿@page
+@model MoviesAPI.Pages.LFMAS.IndexModel
+@{
+}
+<h2>List of movies</h2>
+<table class="table">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Titel</th>
+			<th>Date</th>
+			<th>Genre</th>
+			<th>Restricting age</th>
+			<th>Platform</th>
+			<th>Watched</th>
+			<th>Rating</th>
+		</tr>
+	</thead>
+	<tbody>
+
+		@foreach (var movie in Model.Series)
+		{
+			<tr>
+				<td>@movie.ID</td>
+				<td>@movie.Titel</td>
+				<td>@movie.Date</td>
+				<td>@movie.Genre</td>
+				<td>@movie.Restricting_age</td>
+				<td>@movie.Platform</td>
+				<td>@movie.Rating</td>
+			</tr>
+		}
+
+	</tbody>
+</table>
+
+<h2>List of series</h2>

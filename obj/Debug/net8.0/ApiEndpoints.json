@@ -1,5 +1,47 @@
 [
   {
+    "ContainingType": "MoviesAPI.Controllers.LFMController",
+    "Method": "GetName",
+    "RelativePath": "LFM",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[MoviesAPI.Models.LFM, MoviesAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ],
+    "EndpointName": "GetLFM"
+  },
+  {
+    "ContainingType": "MoviesAPI.Controllers.LFSController",
+    "Method": "GetName",
+    "RelativePath": "LFS",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[MoviesAPI.Models.LFS, MoviesAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ],
+    "EndpointName": "GetLFS"
+  },
+  {
     "ContainingType": "MoviesAPI.Controllers.MoviesController",
     "Method": "GetName",
     "RelativePath": "Movies",
