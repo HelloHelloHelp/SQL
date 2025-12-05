@@ -24,3 +24,4 @@ namespace ZAAL_SQL.Pages.LFMAS.LFS
         }
     }
 }
+

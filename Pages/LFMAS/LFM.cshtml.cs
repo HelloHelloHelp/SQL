@@ -1,3 +1,4 @@
+using System;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -22,5 +23,24 @@ namespace ZAAL_SQL.Pages.LFMAS.LFM
             movies = await _context.MovieModel.ToListAsync();
             return Page();
         }
+
+        public async Task<IActionResult> OnPostAdd()
+        {
+            if (true)
+            {
+                TempData["Message"] = $"movie added to your list!";
+            }
+            else
+            {
+            }
+
+          
+            movies = await _context.MovieModel.ToListAsync();
+
+            return Page();
+        }
+
+
+
     }
 }
