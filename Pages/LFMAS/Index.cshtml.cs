@@ -17,7 +17,7 @@ namespace MoviesAPI.Pages.LFMAS
                 using (SqlConnection connection = new SqlConnection(constring))
                 {
                     connection.Open();
-                    String sql = "SELECT * FROM movies";
+                    String sql = "SELECT * FROM LFM";
 
                     using (SqlCommand command = new SqlCommand("SELECT * FROM LFM", connection))
                     {
