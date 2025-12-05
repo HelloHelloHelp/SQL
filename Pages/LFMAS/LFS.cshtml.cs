@@ -8,20 +8,53 @@ namespace ZAAL_SQL.Pages.LFMAS.LFS
 {
     public class IndexModel : PageModel
     {
-        private readonly SeriesDataContext _context;
+        public IList<Movie> Movie { get; set; } = new List<Movie>();
+        public IList<MovieModel> movies { get; set; } = new List<MovieModel>();
 
-        public IndexModel(SeriesDataContext context)
+        private readonly MoviesDataContext _context;
+        private readonly ZAAL_SQL.Data.ZAAL_SQLContext Moviecontext;
+        public IndexModel(MoviesDataContext context, ZAAL_SQL.Data.ZAAL_SQLContext movieContext)
         {
             _context = context;
+            Moviecontext = movieContext;
         }
-
-        public IList<SerieModel> Series { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync()
         {
-            Series = await _context.SerieModel.ToListAsync();
+            movies = await _context.MovieModel.ToListAsync();
+            Movie = await Moviecontext.Movie.ToListAsync();
+
             return Page();
         }
+
+        public async Task<IActionResult> OnPostAdd(int ID)
+        {
+            var movie = _context.MovieModel.FirstOrDefault(m => m.ID == ID);
+            if (true)
+            {
+                TempData["Message"] = "added to your movie list!";
+                var newMovie = new Movie
+                {
+                    Titel = movie?.Titel,
+                    Date = movie?.Date,
+                    Genre = movie?.Genre,
+                    Restricting_age = movie?.Restricting_age,
+                    Rating = movie?.Rating,
+                    Platform = movie?.Platform
+                };
+
+
+                Moviecontext.Movie.Add(newMovie);
+                await Moviecontext.SaveChangesAsync();
+
+                movies = await _context.MovieModel.ToListAsync();
+                Movie = await Moviecontext.Movie.ToListAsync();
+
+                return Page();
+            }
+            else
+            {
+            }
+        }
     }
-}
 

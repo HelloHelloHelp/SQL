@@ -5,6 +5,8 @@ namespace ZAAL_SQL.Models
     [Table("LFM", Schema = "dbo")]
     public class MovieModel
     {
+        internal static object movies;
+
         public MovieModel() { }
          
         public int ID { get; set; }

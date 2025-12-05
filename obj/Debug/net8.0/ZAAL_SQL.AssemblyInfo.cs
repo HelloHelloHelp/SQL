@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ZAAL_SQL")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7a80ee9da34131745748671840e266a9cf59b23e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1f8521cff34372cfd40dd2558b5fb9ddc169421f")]
 [assembly: System.Reflection.AssemblyProductAttribute("ZAAL_SQL")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ZAAL_SQL")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

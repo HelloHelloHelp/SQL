@@ -29,20 +29,22 @@ namespace ZAAL_SQL.Pages.LFMAS.LFM
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAdd()
+        public async Task<IActionResult> OnPostAdd(int ID)
         {
+            var movie = _context.MovieModel.FirstOrDefault(m => m.ID == ID);
             if (true)
             {
                 TempData["Message"] = "added to your movie list!";
                 var newMovie = new Movie
                 {
-                    Titel = Request.Form["Titel"],
-                    Date = int.TryParse(Request.Form["Date"], out int date) ? date : (int?)null,
-                    Genre = Request.Form["Genre"],
-                    Restricting_age = int.TryParse(Request.Form["Restricting_age"], out int age) ? age : (int?)null,
-                    Rating = int.TryParse(Request.Form["Rating"], out int rating) ? rating : (int?)null,
-                    Platform = Request.Form["Platform"]
+                    Titel = movie?.Titel,  
+                    Date = movie?.Date,
+                    Genre = movie?.Genre,
+                    Restricting_age = movie?.Restricting_age,
+                    Rating = movie?.Rating,
+                    Platform = movie?.Platform
                 };
+                
 
                 Moviecontext.Movie.Add(newMovie);
                 await Moviecontext.SaveChangesAsync(); 
@@ -55,14 +57,6 @@ namespace ZAAL_SQL.Pages.LFMAS.LFM
             else
             {
             }
-
-          
-            movies = await _context.MovieModel.ToListAsync();
-
-            return Page();
         }
-
-
-
     }
 }
