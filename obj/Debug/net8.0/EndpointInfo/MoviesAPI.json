@@ -312,7 +312,7 @@
             "nullable": true
           },
           "watched": {
-            "type": "boolean",
+            "type": "string",
             "nullable": true
           },
           "rating": {

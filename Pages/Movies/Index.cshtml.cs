@@ -8,13 +8,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Data.SqlClient;
+using MoviesAPI.Models;
 
 namespace MoviesAPI.Pages.Movies
 {
     public class IndexModel : PageModel
     {
 
-        public List<MoviesAPI.Models.Movie> ListMovies = new List<MoviesAPI.Models.Movie>();
+        public List<MoviesAPI.Models.Movie> movies = new List<MoviesAPI.Models.Movie>();
         public async Task OnGet()
         {
             try
@@ -23,25 +24,26 @@ namespace MoviesAPI.Pages.Movies
                 using (SqlConnection connection = new SqlConnection(constring))
                 {
                     connection.Open();
-                    String sql = "SELECT * FROM movies";
+                    String sql = "SELECT * FROM movie_info";
 
-                    using (SqlCommand command = new SqlCommand("SELECT * FROM movies", connection))
+                    using (SqlCommand command = new SqlCommand("SELECT * FROM movie_info", connection))
                     {
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
                             while (reader.Read())
                             {
-                                MoviesAPI.Models.Movie movie = new MoviesAPI.Models.Movie();
-                                movie.ID =  reader.GetInt32("ID");
-                                movie.Titel = reader.GetString("Titel");
-                                movie.Date = reader.GetInt32("Date");
-                                movie.Genre = reader.GetString("Genre");
-                                movie.Restricting_age = reader.GetInt32("Restricting_age");
-                                movie.Platform = reader.GetString("Platform");
-                                movie.Watched = reader.GetBoolean("Watched");
-                                movie.Rating = reader.GetInt32("Rating");
+                                Models.Movie movie = new Models.Movie();
+                                movie.ID = (int)reader["ID"];
+                                movie.Titel = reader["Titel"].ToString();
+                                movie.Date = (int)reader["Date"];
+                                movie.Genre = reader["Genre"].ToString();
+                                movie.Restricting_age = reader["Restricting_age"] == DBNull.Value ? null : (int)reader["Restricting_age"];
+                                movie.Platform = reader["Platform"].ToString();
+                                movie.Watched = reader["Watched"].ToString();
+                                movie.Rating = reader.IsDBNull(reader.GetOrdinal("Rating")) ? 0 : reader.GetInt32(reader.GetOrdinal("Rating"));
+                                movies.Add(movie);
 
-                                ListMovies.Add(movie);
+                                movies.Add(movie);
                             }
                         }
 

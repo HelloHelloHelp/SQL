@@ -17,24 +17,25 @@ namespace MoviesAPI.Repository
             {
                 connection.Open();
                 List<Models.Serie> series = new List<Models.Serie>();
-                string sql = "SELECT * FROM series";
+                string sql = "SELECT * FROM serie_info";
 
                 using SqlCommand command = new SqlCommand(sql, connection);
                 {
-                    using SqlDataReader reader = command.ExecuteReader();
+                    SqlDataReader sqlDataReader = command.ExecuteReader();
+                    using SqlDataReader reader = sqlDataReader;
                     {
                         while (reader.Read())
                         {
                             Models.Serie serie = new Models.Serie();
-                            serie.ID = reader.GetInt32("ID");
-                            serie.Titel = reader.GetString("Titel");
-                            serie.Date = reader.GetInt32("Date");
-                            serie.Genre = reader.GetString("Genre");
-                            serie.Restricting_age = reader.GetInt32("Restricting_age");
-                            serie.Seasons = reader.GetInt32("Seasons");
-                            serie.Platform = reader.GetString("Platform");
-                            serie.Watched = reader.GetString("Watched");
-                            serie.Rating = reader.GetInt32("Rating");
+                            serie.ID = (int)reader["ID"];
+                            serie.Titel = reader["Titel"].ToString();
+                            serie.Date = (int)reader["Date"];
+                            serie.Genre = reader["Genre"].ToString();
+                            serie.Restricting_age = reader["Restricting_age"] == DBNull.Value ? null : (int)reader["Restricting_age"];
+                            serie.Seasons = (int)reader["Seasons"];
+                            serie.Platform = reader["Platform"].ToString();
+                            serie.Watched = reader["Watched"].ToString();
+                            serie.Rating = reader.IsDBNull(reader.GetOrdinal("Rating")) ? 0 : reader.GetInt32(reader.GetOrdinal("Rating"));
                             series.Add(serie);
                         }
                     }

@@ -16,9 +16,9 @@ namespace MoviesAPI.Models
         public string? Genre { get; set; }
         public int? Restricting_age { get; set; }
         public string? Platform { get; set; }
-        public bool? Watched { get; set; }
+        public string? Watched { get; set; }
       public  int? Rating { get; set; }
-        public Movie(string? titel, int? date, string? genre, int? restricting_age, string? platform, bool? watched, int? rating)
+        public Movie(string? titel, int? date, string? genre, int? restricting_age, string? platform, string? watched, int? rating)
         {
             Titel = titel;
             Date = date;

@@ -26,14 +26,13 @@ namespace MoviesAPI.Pages.LFMAS
                             while (reader.Read())
                             {
                                 MoviesAPI.Models.LFM movie = new MoviesAPI.Models.LFM();
-                                movie.ID = reader.GetInt32("ID");
-                                movie.Titel = reader.GetString("Titel");
-                                movie.Date = reader.GetInt32("Date");
-                                movie.Genre = reader.GetString("Genre");
-                                movie.Restricting_age = reader.GetInt32("Restricting_age");
-                                movie.Platform = reader.GetString("Platform");
-                                movie.Rating = reader.GetInt32("Rating");
-
+                                movie.ID = (int)reader["ID"];
+                                movie.Titel = reader["Titel"].ToString();
+                                movie.Date = (int)reader["Date"];
+                                movie.Genre = reader["Genre"].ToString();
+                                movie.Restricting_age = reader["Restricting_age"] == DBNull.Value ? null : (int)reader["Restricting_age"];
+                                movie.Platform = reader["Platform"].ToString();
+                                movie.Rating = reader.IsDBNull(reader.GetOrdinal("Rating")) ? 0 : reader.GetInt32(reader.GetOrdinal("Rating"));
                                 Movies.Add(movie);
                             }
                         }
@@ -67,14 +66,15 @@ namespace MoviesAPI.Pages.LFMAS
                             while (reader.Read())
                             {
                                 MoviesAPI.Models.LFS serie = new MoviesAPI.Models.LFS();
-                                serie.ID = reader.GetInt32("ID");
-                                serie.Titel = reader.GetString("Titel");
-                                serie.Date = reader.GetInt32("Date");
-                                serie.Genre = reader.GetString("Genre");
-                                serie.Restricting_age = reader.GetInt32("Restricting_age");
-                                serie.Platform = reader.GetString("Platform");
-                                serie.Rating = reader.GetInt32("Rating");
-
+                                serie.ID = (int)reader["ID"];
+                                serie.Titel = reader["Titel"].ToString();
+                                serie.Date = (int)reader["Date"];
+                                serie.Genre = reader["Genre"].ToString();
+                                serie.Restricting_age = reader["Restricting_age"] == DBNull.Value ? null : (int)reader["Restricting_age"];
+                                serie.Seasons = (int)reader["Seasons"];
+                                serie.Platform = reader["Platform"].ToString();
+                                serie.Rating = reader.IsDBNull(reader.GetOrdinal("Rating")) ? 0 : reader.GetInt32(reader.GetOrdinal("Rating"));
+                               
                                 Series.Add(serie);
                             }
                         }

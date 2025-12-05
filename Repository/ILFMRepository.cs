@@ -1,6 +1,7 @@
 ﻿using System.Data;
 using System.Data.SqlClient;
 using Microsoft.Data.SqlClient;
+using MoviesAPI.Models;
 namespace MoviesAPI.Repository
 {
     public interface ILFMRepository
@@ -21,17 +22,19 @@ namespace MoviesAPI.Repository
 
                 using SqlCommand command = new SqlCommand(sql, connection);
                 {
+                  
                     using SqlDataReader reader = command.ExecuteReader();
                     {
                         while (reader.Read())
                         {
                             Models.LFM Mrecommend = new Models.LFM();
-                            Mrecommend.ID = reader.GetInt32("ID");
-                            Mrecommend.Titel = reader.GetString("Titel");
-                            Mrecommend.Date = reader.GetInt32("Date");
-                            Mrecommend.Genre = reader.GetString("Genre");
-                            Mrecommend.Restricting_age = reader.GetInt32("Restricting_age");
-                            Mrecommend.Platform = reader.GetString("Platform");
+                            Mrecommend.ID = (int)reader["ID"];
+                            Mrecommend.Titel = reader["Titel"].ToString();
+                            Mrecommend.Date = (int)reader["Date"];
+                            Mrecommend.Genre = reader["Genre"].ToString();
+                            Mrecommend.Restricting_age = reader["Restricting_age"] == DBNull.Value ? null : (int)reader["Restricting_age"];
+                            Mrecommend.Platform = reader["Platform"].ToString();
+                            Mrecommend.Rating = reader.IsDBNull(reader.GetOrdinal("Rating")) ? 0 : reader.GetInt32(reader.GetOrdinal("Rating"));
                             Mrecommends.Add(Mrecommend);
                         }
                     }

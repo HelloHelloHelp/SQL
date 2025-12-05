@@ -1,5 +1,4 @@
 ﻿using System.Data;
-using System.Data.SqlClient;
 using Microsoft.Data.SqlClient;
 namespace MoviesAPI.Repository
 {
@@ -17,33 +16,34 @@ namespace MoviesAPI.Repository
             {
                 connection.Open();
                 List<Models.Movie> movies = new List<Models.Movie>();
-                string sql = "SELECT * FROM movies";
+                string sql = "SELECT * FROM movie_info";
 
-              using  SqlCommand command = new SqlCommand(sql, connection);
+                using SqlCommand command = new SqlCommand(sql, connection);
                 {
-                   using SqlDataReader reader = command.ExecuteReader();
+                  
+                    using SqlDataReader reader = command.ExecuteReader();
                     {
                         while (reader.Read())
                         {
                             Models.Movie movie = new Models.Movie();
-                            movie.ID = reader.GetInt32("ID");
-                            movie.Titel = reader.GetString("Titel");
-                            movie.Date = reader.GetInt32("Date");
-                            movie.Genre = reader.GetString("Genre");
-                            movie.Restricting_age = reader.GetInt32("Restricting_age");
-                            movie.Platform = reader.GetString("Platform");
-                            movie.Watched = reader.GetBoolean("Watched");
-                            movie.Rating = reader.GetInt32("Rating");
+                            movie.ID = (int)reader["ID"];
+                            movie.Titel = reader["Titel"].ToString();
+                            movie.Date = (int)reader["Date"];
+                            movie.Genre = reader["Genre"].ToString();
+                            movie.Restricting_age = reader["Restricting_age"] == DBNull.Value ? null : (int)reader["Restricting_age"];
+                            movie.Platform = reader["Platform"].ToString();
+                            movie.Watched = reader["Watched"].ToString();
+                            movie.Rating = reader.IsDBNull(reader.GetOrdinal("Rating"))? 0: reader.GetInt32(reader.GetOrdinal("Rating"));
                             movies.Add(movie);
                         }
                     }
                   
                     reader.Close();
                 }
-               
-             
+            
                 return movies;
             }
         }
     }
 }
+//movie.Rating = (int)reader["Rating"] == DBNull.Value ? null : (int)reader["Rating"];
