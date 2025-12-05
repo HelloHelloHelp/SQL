@@ -10,20 +10,22 @@ namespace ZAAL_SQL.Pages.LFMAS.LFM
 {
     public class IndexModel : PageModel
     {
-        public IList<MovieModel> Movie { get; set; } = new List<MovieModel>();
+        public IList<Movie> Movie { get; set; } = new List<Movie>();
         public IList<MovieModel> movies { get; set; } = new List<MovieModel>();
 
         private readonly MoviesDataContext _context;
-
-        public IndexModel(MoviesDataContext context)
+        private readonly ZAAL_SQL.Data.ZAAL_SQLContext Moviecontext;
+        public IndexModel(MoviesDataContext context, ZAAL_SQL.Data.ZAAL_SQLContext movieContext)
         {
             _context = context;
+            Moviecontext = movieContext;
         }
 
         public async Task<IActionResult> OnGetAsync()
         {
             movies = await _context.MovieModel.ToListAsync();
-            Movie = movies.ToList();
+            Movie = await Moviecontext.Movie.ToListAsync();
+
             return Page();
         }
 
@@ -31,19 +33,24 @@ namespace ZAAL_SQL.Pages.LFMAS.LFM
         {
             if (true)
             {
-                TempData["Message"] = $"added to your movie list!";
-                var movie = new MovieModel
+                TempData["Message"] = "added to your movie list!";
+                var newMovie = new Movie
                 {
-                    Titel = Request.Form["Title"].ToString(),
-                    Date = int.TryParse(Request.Form["Date"], out int date) ? date : null,
-                    Genre = Request.Form["Genre"].ToString(),
-                    Restricting_age = int.TryParse(Request.Form["Restricting_age"], out int age) ? age : null,
-                    Rating = int.TryParse(Request.Form["Rating"], out int rating) ? rating : null,
-                    Platform = Request.Form["Platform"].ToString()
+                    Titel = Request.Form["Titel"],
+                    Date = int.TryParse(Request.Form["Date"], out int date) ? date : (int?)null,
+                    Genre = Request.Form["Genre"],
+                    Restricting_age = int.TryParse(Request.Form["Restricting_age"], out int age) ? age : (int?)null,
+                    Rating = int.TryParse(Request.Form["Rating"], out int rating) ? rating : (int?)null,
+                    Platform = Request.Form["Platform"]
                 };
-                _context.MovieModel.Add(movie);
-                await _context.SaveChangesAsync();
 
+                Moviecontext.Movie.Add(newMovie);
+                await Moviecontext.SaveChangesAsync(); 
+
+                movies = await _context.MovieModel.ToListAsync();
+                Movie = await Moviecontext.Movie.ToListAsync(); 
+
+                return Page();
             }
             else
             {
