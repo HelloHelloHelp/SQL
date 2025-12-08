@@ -76,9 +76,12 @@
                 <td>
                     <p>/10</p>
                 </td>
-                <form method="post" asp-page-handler="Add">
-                    <button type="submit" asp-page-handler="Add" asp-route-id="@item.ID">Add</button>
-                </form>
+                <td>
+                    <form method="post" asp-page-handler="Add">
+                        <button type="submit" asp-page-handler="Add" asp-route-id="@item.ID">Add</button>
+                    </form>
+                </td>
+             
             </tr>
         }
     </tbody>

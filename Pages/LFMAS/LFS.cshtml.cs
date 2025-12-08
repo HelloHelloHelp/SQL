@@ -8,47 +8,48 @@ namespace ZAAL_SQL.Pages.LFMAS.LFS
 {
     public class IndexModel : PageModel
     {
-        public IList<Movie> Movie { get; set; } = new List<Movie>();
-        public IList<MovieModel> movies { get; set; } = new List<MovieModel>();
+        public IList<Serie> serie { get; set; } = new List<Serie>();
+        public IList<SerieModel> Series { get; set; } = new List<SerieModel>();
 
-        private readonly MoviesDataContext _context;
-        private readonly ZAAL_SQL.Data.ZAAL_SQLContext Moviecontext;
-        public IndexModel(MoviesDataContext context, ZAAL_SQL.Data.ZAAL_SQLContext movieContext)
+        private readonly SeriesDataContext _Series;
+        private readonly ZAAL_SQL.Data.Context Seriecontext;
+        public IndexModel(SeriesDataContext context, ZAAL_SQL.Data.Context SerieContext)
         {
-            _context = context;
-            Moviecontext = movieContext;
+            _Series = context;
+            Seriecontext = SerieContext;
         }
 
         public async Task<IActionResult> OnGetAsync()
         {
-            movies = await _context.MovieModel.ToListAsync();
-            Movie = await Moviecontext.Movie.ToListAsync();
+            Series = await _Series.SerieModel.ToListAsync();
+            serie = await Seriecontext.Serie.ToListAsync();
 
             return Page();
         }
 
         public async Task<IActionResult> OnPostAdd(int ID)
         {
-            var movie = _context.MovieModel.FirstOrDefault(m => m.ID == ID);
+            var Serie = _Series.SerieModel.FirstOrDefault(m => m.ID == ID);
             if (true)
             {
                 TempData["Message"] = "added to your movie list!";
-                var newMovie = new Movie
+                var newSerie = new Serie
                 {
-                    Titel = movie?.Titel,
-                    Date = movie?.Date,
-                    Genre = movie?.Genre,
-                    Restricting_age = movie?.Restricting_age,
-                    Rating = movie?.Rating,
-                    Platform = movie?.Platform
+                    Titel = Serie?.Titel,
+                    Date = Serie?.Date,
+                    Genre = Serie?.Genre,
+                    Restricting_age = Serie?.Restricting_age,
+                    Seasons = Serie?.Seasons,
+                    Rating = Serie?.Rating,
+                    Platform = Serie?.Platform
                 };
 
 
-                Moviecontext.Movie.Add(newMovie);
-                await Moviecontext.SaveChangesAsync();
+                Seriecontext.Serie.Add(newSerie);
+                await Seriecontext.SaveChangesAsync();
 
-                movies = await _context.MovieModel.ToListAsync();
-                Movie = await Moviecontext.Movie.ToListAsync();
+                Series = await _Series.SerieModel.ToListAsync();
+                serie = await Seriecontext.Serie.ToListAsync();
 
                 return Page();
             }
@@ -57,4 +58,5 @@ namespace ZAAL_SQL.Pages.LFMAS.LFS
             }
         }
     }
+}
 
