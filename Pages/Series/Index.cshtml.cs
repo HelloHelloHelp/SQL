@@ -20,7 +20,7 @@ namespace MoviesAPI.Pages.Series
         {
             try
             {
-                string constring = "Data Source=localhost;Initial Catalog=series;Integrated Security=True;Encrypt=True;Trust Server Certificate=True";
+                string constring = "Data Source=localhost;Initial C atalog=series;Integrated Security=True;Encrypt=True;Trust Server Certificate=True";
                 using (SqlConnection connection = new SqlConnection(constring))
                 {
                     connection.Open();

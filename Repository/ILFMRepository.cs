@@ -1,15 +1,25 @@
 ﻿using System.Data;
+using System.Net.Http;
 using System.Data.SqlClient;
 using Microsoft.Data.SqlClient;
 using MoviesAPI.Models;
+using static System.Net.WebRequestMethods;
+using FluentNHibernate.Conventions.Inspections;
 namespace MoviesAPI.Repository
 {
     public interface ILFMRepository
     {
         List<Models.LFM> GetLFM();
+       Task<List<Models.LFM>> GetLFMFromApiAsync();
     }
     public class LFMRepository : ILFMRepository
     {
+        private readonly HttpClient _httpClient;
+        readonly Task<List<Models.LFM>> GetLFMFromApiAsync();
+        public LFMRepository(HttpClient httpClient)
+        {
+            _httpClient = httpClient;  
+        }
 
         public List<Models.LFM> GetLFM()
         {
@@ -41,10 +51,21 @@ namespace MoviesAPI.Repository
 
                     reader.Close();
                 }
-
-
                 return Mrecommends;
             }
         }
+        /*Fetch async Task<List<Models.LFM>> GetLFMFromApiAsync()
+        {
+            List<Models.LFM> lfmList = new List<Models.LFM>();
+            HttpResponseMessage response = await _httpClient.GetAsync("https://api.example.com/lfm");
+            if (response.IsSuccessStatusCode)
+            {
+                var data = await response.Content.ReadAsAsync<List<Models.LFM>>();
+                lfmList = data;
+            }
+            return lfmList;
+        }*/
+
+
     }
 }
