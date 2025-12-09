@@ -15,16 +15,16 @@ namespace ZAAL_SQL.Models
         public string? Genre { get; set; }
         public int? Restricting_age { get; set; }
         public int? Rating { get; set; }
-        public string? Platform { get; set; }
+        public byte[]? Poster { get; set; }
 
-        public MovieModel(string? titel, int? date, string? genre, int? restricting_age, int? rating, string? platform)
+        public MovieModel(string? titel, int? date, string? genre, int? restricting_age, int? rating, byte[]? poster)
         {
             Titel = titel;
             Date = date;
             Genre = genre;
             Restricting_age = restricting_age;
             Rating = rating;
-            Platform = platform;
+            Poster = poster;
         }
     }
 }

@@ -42,7 +42,7 @@ namespace ZAAL_SQL.Pages.LFMAS.LFM
                     Genre = movie?.Genre,
                     Restricting_age = movie?.Restricting_age,
                     Rating = movie?.Rating,
-                    Platform = movie?.Platform
+                    Poster = movie?.Poster
                 };
                 
 

@@ -32,7 +32,7 @@ namespace ZAAL_SQL.Pages.LFMAS.LFS
             var Serie = _Series.SerieModel.FirstOrDefault(m => m.ID == ID);
             if (true)
             {
-                TempData["Message"] = "added to your movie list!";
+                TempData["Message"] = "added to your serie list!";
                 var newSerie = new Serie
                 {
                     Titel = Serie?.Titel,
@@ -41,7 +41,7 @@ namespace ZAAL_SQL.Pages.LFMAS.LFS
                     Restricting_age = Serie?.Restricting_age,
                     Seasons = Serie?.Seasons,
                     Rating = Serie?.Rating,
-                    Platform = Serie?.Platform
+                    Poster = Serie?.Poster,
                 };
 
 
