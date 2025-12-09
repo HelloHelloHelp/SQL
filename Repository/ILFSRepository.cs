@@ -34,7 +34,7 @@ namespace MoviesAPI.Repository
                             Srecommend.Genre = reader["Genre"].ToString();
                             Srecommend.Restricting_age = reader["Restricting_age"] == DBNull.Value ? null : (int)reader["Restricting_age"];
                             Srecommend.Seasons = (int)reader["Seasons"];
-                            Srecommend.Poster = reader["Poster"] == DBNull.Value ? null : (byte[])reader["Poster"];
+                            Srecommend.Poster = reader["Poster"].ToString();
                             Srecommend.Rating = reader.IsDBNull(reader.GetOrdinal("Rating")) ? 0 : reader.GetInt32(reader.GetOrdinal("Rating"));
                             Srecommends.Add(Srecommend);
                         }

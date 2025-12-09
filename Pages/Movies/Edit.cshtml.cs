@@ -38,11 +38,11 @@ namespace MoviesAPI.Pages.Movies
                             if (reader.Read())
                             {
                                 movie.ID =  reader.GetInt32("ID");
-                                movie.Titel = reader.GetString("Titel");
-                                movie.Date = reader.GetInt32("Date");
+                                movie.Title = reader.GetString("Title");
+                                movie.Year = reader.GetString("Year");
                                 movie.Genre = reader.GetString("Genre");
                                 movie.Restricting_age = reader.GetInt32("Restricting_age");
-                                movie.Rating = reader.GetInt32("Rating");
+                                movie.ImdbRating = reader.GetString("ImdbRating");
                             }
                         }
                     }
@@ -55,11 +55,11 @@ namespace MoviesAPI.Pages.Movies
         }
         public async Task OnPost()
         {
-            movie.Titel = Request.Form["Titel"];
-            movie.Date = int.Parse(Request.Form["Date"]);
+            movie.Title = Request.Form["Title"];
+            movie.Year = Request.Form["Year"];
             movie.Genre = Request.Form["Genre"];
             movie.Restricting_age = int.Parse(Request.Form["Restricting_age"]);
-            movie.Rating = int.Parse(Request.Form["Rating"]);
+            movie.ImdbRating = Request.Form["ImdbRating"];
 
             try             {
                 String connectionString = "Data Source=localhost;Initial Catalog=movies;Integrated Security=True;Encrypt=True;Trust Server Certificate=True";
@@ -67,17 +67,17 @@ namespace MoviesAPI.Pages.Movies
                 {
                     connection.Open();
                     String sql = "UPDATE movies " +
-                                 "SET Titel=@Titel, Date=@Date, Genre=@Genre, Restricting_age=@Restricting_age " +
+                                 "SET Title=@Title, Year=@Year, Genre=@Genre, Restricting_age=@Restricting_age, ImdbRating=@ImdbRating " +
                                  "WHERE ID=@ID;";
                     using (SqlCommand command = new SqlCommand(sql, connection))
                     {
-                        command.Parameters.AddWithValue("@Titel", movie.Titel);
-                        command.Parameters.AddWithValue("@Date", movie.Date);
+                        command.Parameters.AddWithValue("@Title", movie.Title);
+                        command.Parameters.AddWithValue("@Year", movie.Year);
                         command.Parameters.AddWithValue("@Genre", movie.Genre);
                         command.Parameters.AddWithValue("@Restricting_age", movie.Restricting_age);
                         command.Parameters.AddWithValue("@Watched", movie.Watched);
                         command.Parameters.AddWithValue("@ID", movie.ID);
-                        command.Parameters.AddWithValue("@Stars", movie.Rating);
+                        command.Parameters.AddWithValue("@ImdbRating", movie.ImdbRating);
                         command.ExecuteNonQuery();
                     }
                 }

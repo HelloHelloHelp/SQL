@@ -23,12 +23,11 @@ namespace MoviesAPI.Pages.Movies
 
         public void OnPost()
         {
-            movie.Titel = Request.Form["Titel"];
-            movie.Date = Request.Form["Date"].ToString() == "" ? 0 : Convert.ToInt32(Request.Form["Date"]);
+            movie.Title = Request.Form["Title"];
+            movie.Year = Request.Form["Year"];
             movie.Genre = Request.Form["Genre"];
             movie.Restricting_age = Request.Form["Restricting_age"].ToString() == "" ? 0 : Convert.ToInt32(Request.Form["Restrcting_age"]);
-            movie.Rating = Request.Form["Rating"].ToString() == "" ? 0 : Convert.ToInt32(Request.Form["Rating"]);
-
+            movie.ImdbRating = Request.Form["ImdbRating"];
             try
             {
                 String connectionString = "Data Source=localhost;Initial Catalog=movies;Integrated Security=True;Encrypt=True;Trust Server Certificate=True";
@@ -36,15 +35,15 @@ namespace MoviesAPI.Pages.Movies
                 {
                     connection.Open();
                     String sql = "INSERT INTO movies " +
-                                 "(Titel, Date, Genre, Restricting_age) VALUES " +
-                                 "(@Titel, @Date, @Genre, @Restricting_age);";
+                                 "(Title, Year, Genre, Restricting_age, ImdbRating) VALUES " +
+                                 "(@Title, @Year, @Genre, @Restricting_age, @ImdbRating);";
                     using (SqlCommand command = new SqlCommand(sql, connection))
                     {
-                        command.Parameters.AddWithValue("@Titel", movie.Titel);
-                        command.Parameters.AddWithValue("@Date", movie.Date);
+                        command.Parameters.AddWithValue("@Title", movie.Title);
+                        command.Parameters.AddWithValue("@Year", movie.Year);
                         command.Parameters.AddWithValue("@Genre", movie.Genre);
                         command.Parameters.AddWithValue("@Restricting_age", movie.Restricting_age);
-                        command.Parameters.AddWithValue("@Rating", movie.Rating);
+                        command.Parameters.AddWithValue("@ImdbRating", movie.ImdbRating);
                         command.ExecuteNonQuery();
                     }
                 }

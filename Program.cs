@@ -1,9 +1,65 @@
+using System.Net.Http;
+using Azure;
+using Azure.Core;
+using Microsoft.Data.SqlClient;
+using Microsoft.IdentityModel.Tokens;
 using MoviesAPI.Models;
 using MoviesAPI.Repository;
 using MoviesAPI.Service;
+using Newtonsoft.Json;
 
 
 var builder = WebApplication.CreateBuilder(args);
+
+LFM movie = null;
+
+using (var httpClient = new HttpClient())
+{
+    var endpoint = new Uri("https://www.omdbapi.com/?apikey=3f124dfe&t=Pluribus");
+    var result = await httpClient.GetAsync(endpoint);
+
+    if (result.IsSuccessStatusCode)
+    {
+        var content = await result.Content.ReadAsStringAsync();
+        movie = JsonConvert.DeserializeObject<LFM>(content);
+    }
+}
+
+if (movie == null)
+    throw new Exception("Movie API returned null.");
+
+
+byte[] posterBytes = null;
+
+if (!string.IsNullOrEmpty(movie.Poster))
+{
+    using var httpClient = new HttpClient();
+    posterBytes = await httpClient.GetByteArrayAsync(movie.Poster);
+}
+
+using (SqlConnection conn = new SqlConnection("Data Source=localhost;Initial Catalog=LFMAS;Integrated Security=True;Encrypt=True;Trust Server Certificate=True"))
+{
+    conn.Open();
+
+    string query = @"
+        INSERT INTO LFM (Title, Year, Genre, Poster, ImdbRating)
+        VALUES (@Title , @Year, @Genre, @Poster, @ImdbRating)";
+
+    using (SqlCommand cmd = new SqlCommand(query, conn))
+    {
+        cmd.Parameters.AddWithValue("@Title ", movie.Title);
+        cmd.Parameters.AddWithValue("@Year", movie.Year);
+        cmd.Parameters.AddWithValue("@Genre", movie.Genre);
+        cmd.Parameters.AddWithValue("@Poster", (object?)posterBytes ?? DBNull.Value);
+        cmd.Parameters.AddWithValue("@ImdbRating", movie.ImdbRating);
+
+        cmd.ExecuteNonQuery();
+    }
+}
+
+
+
+
 
 // Add services
 builder.Services.AddControllers();

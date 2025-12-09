@@ -14,9 +14,9 @@ namespace MoviesAPI.Models
         public int? Restricting_age { get; set; }
         public int? Seasons { get; set; }
         public int? Rating { get; set; }
-        public byte[]? Poster { get; set; }
+        public string? Poster { get; set; }
 
-        public LFS(string? titel, int? date, string? genre, int? restricting_age, int? seasons, int? rating, byte[]? poster)
+        public LFS(string? titel, int? date, string? genre, int? restricting_age, int? seasons, int? rating, string? poster)
         {
             Titel = titel;
             Date = date;

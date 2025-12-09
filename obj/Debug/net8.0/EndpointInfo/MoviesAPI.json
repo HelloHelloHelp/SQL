@@ -210,13 +210,12 @@
             "type": "integer",
             "format": "int32"
           },
-          "titel": {
+          "title": {
             "type": "string",
             "nullable": true
           },
-          "date": {
-            "type": "integer",
-            "format": "int32",
+          "year": {
+            "type": "string",
             "nullable": true
           },
           "genre": {
@@ -230,12 +229,10 @@
           },
           "poster": {
             "type": "string",
-            "format": "byte",
             "nullable": true
           },
-          "rating": {
-            "type": "integer",
-            "format": "int32",
+          "imdbRating": {
+            "type": "string",
             "nullable": true
           }
         },
@@ -278,7 +275,6 @@
           },
           "poster": {
             "type": "string",
-            "format": "byte",
             "nullable": true
           }
         },

@@ -9,25 +9,24 @@ namespace MoviesAPI.Models
         public Movie() { }
 
         public int ID { get; set; }
-        public string? Titel { get; set; }
+        public string? Title { get; set; }
 
-        public int? Date { get; set; }
+        public string? Year { get; set; }
 
         public string? Genre { get; set; }
         public int? Restricting_age { get; set; }
-        public byte[]? Poster { get; set; }
-
         public string? Watched { get; set; }
-      public  int? Rating { get; set; }
-        public Movie(string? titel, int? date, string? genre, int? restricting_age, byte[]? poster, string? watched, int? rating)
+        public string? Poster { get; set; }
+        public string? ImdbRating { get; set; }
+        public Movie(string? title, string? year, string? genre, string? watched, int? restricting_age, string? poster, string? imdbRating)
         {
-            Titel = titel;
-            Date = date;
+            Title = title;
+            Year = year;
             Genre = genre;
+            Watched = watched;
             Restricting_age = restricting_age;
             Poster = poster;
-            Watched = watched;
-            Rating = rating;
+            ImdbRating = imdbRating;
         }
     }
 }

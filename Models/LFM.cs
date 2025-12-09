@@ -8,22 +8,22 @@ namespace MoviesAPI.Models
         public LFM() { }
 
         public int ID { get; set; }
-        public string? Titel { get; set; }
+        public string? Title { get; set; }
 
-        public int? Date { get; set; }
+        public string? Year { get; set; }
 
         public string? Genre { get; set; }
         public int? Restricting_age { get; set; }
-        public byte[]? Poster { get; set; }
-        public int? Rating { get; set; }
-        public LFM(string? titel, int? date, string? genre, int? restricting_age, byte[]? poster, int? rating)
+        public string? Poster { get; set; }
+        public string? ImdbRating { get; set; }
+        public LFM(string? title, string? year, string? genre, int? restricting_age, string? poster, string? imdbRating)
         {
-            Titel = titel;
-            Date = date;
+            Title = title;
+            Year = year;
             Genre = genre;
             Restricting_age = restricting_age;
             Poster = poster;
-            Rating = rating;
+            ImdbRating = imdbRating;
         }
     }
 }

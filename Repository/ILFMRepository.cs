@@ -39,12 +39,12 @@ namespace MoviesAPI.Repository
                         {
                             Models.LFM Mrecommend = new Models.LFM();
                             Mrecommend.ID = (int)reader["ID"];
-                            Mrecommend.Titel = reader["Titel"].ToString();
-                            Mrecommend.Date = (int)reader["Date"];
+                            Mrecommend.Title = reader["Title"].ToString();
+                            Mrecommend.Year = reader["Year"].ToString();
                             Mrecommend.Genre = reader["Genre"].ToString();
                             Mrecommend.Restricting_age = reader["Restricting_age"] == DBNull.Value ? null : (int)reader["Restricting_age"];
-                            Mrecommend.Poster = reader["Poster"] == DBNull.Value ? null : (byte[])reader["Poster"];
-                            Mrecommend.Rating = reader.IsDBNull(reader.GetOrdinal("Rating")) ? 0 : reader.GetInt32(reader.GetOrdinal("Rating"));
+                            Mrecommend.Poster = reader["Poster"].ToString();
+                            Mrecommend.ImdbRating = reader["ImdbRating"].ToString();
                             Mrecommends.Add(Mrecommend);
                         }
                     }
