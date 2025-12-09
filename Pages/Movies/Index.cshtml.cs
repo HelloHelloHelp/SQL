@@ -34,13 +34,12 @@ namespace MoviesAPI.Pages.Movies
                             {
                                 Models.Movie movie = new Models.Movie();
                                 movie.ID = (int)reader["ID"];
-                                movie.Titel = reader["Titel"].ToString();
-                                movie.Date = (int)reader["Date"];
+                                movie.Title = reader["Title "].ToString();
+                                movie.Year = reader["Year"].ToString();
                                 movie.Genre = reader["Genre"].ToString();
                                 movie.Restricting_age = reader["Restricting_age"] == DBNull.Value ? null : (int)reader["Restricting_age"];
-                                movie.Poster = reader["Poster"] == DBNull.Value ? null : (byte[])reader["Poster"];
-                                movie.Watched = reader["Watched"].ToString();
-                                movie.Rating = reader.IsDBNull(reader.GetOrdinal("Rating")) ? 0 : reader.GetInt32(reader.GetOrdinal("Rating"));
+                                movie.Poster = reader["Poster"].ToString();
+                                movie.ImdbRating = reader["ImdbRating"].ToString();
                                 movies.Add(movie);
 
                                 movies.Add(movie);

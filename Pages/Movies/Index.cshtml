@@ -10,8 +10,8 @@
 	<thead>
 		<tr>
 			<th>ID</th>
-			<th>Titel</th>
-			<th>Date</th>
+			<th>Title</th>
+			<th>Year</th>
 			<th>Genre</th>
 			<th>Restricting age</th>
 			<th>Poster</th>
@@ -25,13 +25,12 @@
 		{
 			<tr>
 				<td>@movie.ID</td>
-				<td>@movie.Titel</td>
-				<td>@movie.Date</td>
+				<td>@movie.Title</td>
+				<td>@movie.Year</td>
 				<td>@movie.Genre</td>
 				<td>@movie.Restricting_age</td>
 				<td>@movie.Poster</td>
-				<td>@movie.Watched</td>
-				<td>@movie.Rating</td>
+				<th>@movie.ImdbRating</th>
 
 				<td>
 					<a class='btn-primary btn-primary btn-sm' href="/Movies/Edit?id=@movie.ID">Edit</a>
