@@ -2,6 +2,7 @@ using MoviesAPI.Models;
 using MoviesAPI.Repository;
 using MoviesAPI.Service;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services
@@ -25,6 +26,7 @@ builder.Services.AddScoped<ILFMRepository, LFMRepository>();
 builder.Services.AddScoped<ILFSRepository, LFSRepository>();
 builder.Services.AddScoped<ImovieRepository, movieRepository>();
 builder.Services.AddScoped<IserieRepository, serieRepository>();
+builder.Services.AddHttpClient<ILFMRepository, LFMRepository>();
 
 builder.Services.AddScoped<ILFMService, LFMService>();
 builder.Services.AddScoped<ILFSService, LFSService>();

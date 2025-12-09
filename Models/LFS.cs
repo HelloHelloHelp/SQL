@@ -14,9 +14,9 @@ namespace MoviesAPI.Models
         public int? Restricting_age { get; set; }
         public int? Seasons { get; set; }
         public int? Rating { get; set; }
-        public string? Platform { get; set; }
+        public byte[]? Poster { get; set; }
 
-        public LFS(string? titel, int? date, string? genre, int? restricting_age, int? seasons, int? rating, string? platform)
+        public LFS(string? titel, int? date, string? genre, int? restricting_age, int? seasons, int? rating, byte[]? poster)
         {
             Titel = titel;
             Date = date;
@@ -24,7 +24,7 @@ namespace MoviesAPI.Models
             Restricting_age = restricting_age;
             Seasons = seasons;
             Rating = rating;
-            Platform = platform;
+            Poster = poster;
         }
     }
 }

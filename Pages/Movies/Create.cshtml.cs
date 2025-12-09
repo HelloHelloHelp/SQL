@@ -27,7 +27,6 @@ namespace MoviesAPI.Pages.Movies
             movie.Date = Request.Form["Date"].ToString() == "" ? 0 : Convert.ToInt32(Request.Form["Date"]);
             movie.Genre = Request.Form["Genre"];
             movie.Restricting_age = Request.Form["Restricting_age"].ToString() == "" ? 0 : Convert.ToInt32(Request.Form["Restrcting_age"]);
-            movie.Platform = Request.Form["Platform"];
             movie.Rating = Request.Form["Rating"].ToString() == "" ? 0 : Convert.ToInt32(Request.Form["Rating"]);
 
             try
@@ -45,7 +44,6 @@ namespace MoviesAPI.Pages.Movies
                         command.Parameters.AddWithValue("@Date", movie.Date);
                         command.Parameters.AddWithValue("@Genre", movie.Genre);
                         command.Parameters.AddWithValue("@Restricting_age", movie.Restricting_age);
-                        command.Parameters.AddWithValue("@Platform", movie.Platform);
                         command.Parameters.AddWithValue("@Rating", movie.Rating);
                         command.ExecuteNonQuery();
                     }

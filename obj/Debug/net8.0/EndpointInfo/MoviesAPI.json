@@ -228,8 +228,9 @@
             "format": "int32",
             "nullable": true
           },
-          "platform": {
+          "poster": {
             "type": "string",
+            "format": "byte",
             "nullable": true
           },
           "rating": {
@@ -275,8 +276,9 @@
             "format": "int32",
             "nullable": true
           },
-          "platform": {
+          "poster": {
             "type": "string",
+            "format": "byte",
             "nullable": true
           }
         },
@@ -307,8 +309,9 @@
             "format": "int32",
             "nullable": true
           },
-          "platform": {
+          "poster": {
             "type": "string",
+            "format": "byte",
             "nullable": true
           },
           "watched": {
@@ -362,8 +365,9 @@
             "format": "int32",
             "nullable": true
           },
-          "platform": {
+          "poster": {
             "type": "string",
+            "format": "byte",
             "nullable": true
           }
         },

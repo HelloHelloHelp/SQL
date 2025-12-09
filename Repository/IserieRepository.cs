@@ -33,7 +33,7 @@ namespace MoviesAPI.Repository
                             serie.Genre = reader["Genre"].ToString();
                             serie.Restricting_age = reader["Restricting_age"] == DBNull.Value ? null : (int)reader["Restricting_age"];
                             serie.Seasons = (int)reader["Seasons"];
-                            serie.Platform = reader["Platform"].ToString();
+                            serie.Poster = reader["Poster"] == DBNull.Value ? null : (byte[])reader["Poster"];
                             serie.Watched = reader["Watched"].ToString();
                             serie.Rating = reader.IsDBNull(reader.GetOrdinal("Rating")) ? 0 : reader.GetInt32(reader.GetOrdinal("Rating"));
                             series.Add(serie);

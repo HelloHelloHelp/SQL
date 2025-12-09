@@ -85,3 +85,9 @@ C:\Users\ZAAL\source\repos\MoviesAPI\MoviesAPI\bin\Debug\net8.0\MoviesAPI.static
 C:\Users\ZAAL\source\repos\MoviesAPI\MoviesAPI\obj\Debug\net8.0\scopedcss\Pages\Shared\_Layout.cshtml.rz.scp.css
 C:\Users\ZAAL\source\repos\MoviesAPI\MoviesAPI\obj\Debug\net8.0\scopedcss\Shared\_Layout.cshtml.rz.scp.css
 C:\Users\ZAAL\source\repos\MoviesAPI\MoviesAPI\obj\Debug\net8.0\scopedcss\projectbundle\MoviesAPI.bundle.scp.css
+C:\Users\ZAAL\source\repos\MoviesAPI\MoviesAPI\bin\Debug\net8.0\Antlr3.Runtime.dll
+C:\Users\ZAAL\source\repos\MoviesAPI\MoviesAPI\bin\Debug\net8.0\FluentNHibernate.dll
+C:\Users\ZAAL\source\repos\MoviesAPI\MoviesAPI\bin\Debug\net8.0\Iesi.Collections.dll
+C:\Users\ZAAL\source\repos\MoviesAPI\MoviesAPI\bin\Debug\net8.0\NHibernate.dll
+C:\Users\ZAAL\source\repos\MoviesAPI\MoviesAPI\bin\Debug\net8.0\Remotion.Linq.dll
+C:\Users\ZAAL\source\repos\MoviesAPI\MoviesAPI\bin\Debug\net8.0\Remotion.Linq.EagerFetching.dll

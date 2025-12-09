@@ -2,6 +2,7 @@ using System.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Data.SqlClient;
+using MoviesAPI.Models;
 
 namespace MoviesAPI.Pages.LFMAS
 {
@@ -31,7 +32,7 @@ namespace MoviesAPI.Pages.LFMAS
                                 movie.Date = (int)reader["Date"];
                                 movie.Genre = reader["Genre"].ToString();
                                 movie.Restricting_age = reader["Restricting_age"] == DBNull.Value ? null : (int)reader["Restricting_age"];
-                                movie.Platform = reader["Platform"].ToString();
+                                movie.Poster = reader["Poster"] == DBNull.Value ? null : (byte[])reader["Poster"];
                                 movie.Rating = reader.IsDBNull(reader.GetOrdinal("Rating")) ? 0 : reader.GetInt32(reader.GetOrdinal("Rating"));
                                 Movies.Add(movie);
                             }
@@ -72,7 +73,7 @@ namespace MoviesAPI.Pages.LFMAS
                                 serie.Genre = reader["Genre"].ToString();
                                 serie.Restricting_age = reader["Restricting_age"] == DBNull.Value ? null : (int)reader["Restricting_age"];
                                 serie.Seasons = (int)reader["Seasons"];
-                                serie.Platform = reader["Platform"].ToString();
+                                serie.Poster = reader["Poster"] == DBNull.Value ? null : (byte[])reader["Poster"];
                                 serie.Rating = reader.IsDBNull(reader.GetOrdinal("Rating")) ? 0 : reader.GetInt32(reader.GetOrdinal("Rating"));
                                
                                 Series.Add(serie);

@@ -10,12 +10,12 @@ namespace MoviesAPI.Repository
     public interface ILFMRepository
     {
         List<Models.LFM> GetLFM();
-       Task<List<Models.LFM>> GetLFMFromApiAsync();
+       
     }
     public class LFMRepository : ILFMRepository
     {
         private readonly HttpClient _httpClient;
-        readonly Task<List<Models.LFM>> GetLFMFromApiAsync();
+
         public LFMRepository(HttpClient httpClient)
         {
             _httpClient = httpClient;  
@@ -43,7 +43,7 @@ namespace MoviesAPI.Repository
                             Mrecommend.Date = (int)reader["Date"];
                             Mrecommend.Genre = reader["Genre"].ToString();
                             Mrecommend.Restricting_age = reader["Restricting_age"] == DBNull.Value ? null : (int)reader["Restricting_age"];
-                            Mrecommend.Platform = reader["Platform"].ToString();
+                            Mrecommend.Poster = reader["Poster"] == DBNull.Value ? null : (byte[])reader["Poster"];
                             Mrecommend.Rating = reader.IsDBNull(reader.GetOrdinal("Rating")) ? 0 : reader.GetInt32(reader.GetOrdinal("Rating"));
                             Mrecommends.Add(Mrecommend);
                         }
@@ -54,17 +54,7 @@ namespace MoviesAPI.Repository
                 return Mrecommends;
             }
         }
-        /*Fetch async Task<List<Models.LFM>> GetLFMFromApiAsync()
-        {
-            List<Models.LFM> lfmList = new List<Models.LFM>();
-            HttpResponseMessage response = await _httpClient.GetAsync("https://api.example.com/lfm");
-            if (response.IsSuccessStatusCode)
-            {
-                var data = await response.Content.ReadAsAsync<List<Models.LFM>>();
-                lfmList = data;
-            }
-            return lfmList;
-        }*/
+      
 
 
     }

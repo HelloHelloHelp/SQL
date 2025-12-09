@@ -21,14 +21,13 @@ namespace MoviesAPI.Pages.Series
         {
         }
 
-        public void OnPost()
+        public async Task OnPost()
         {
             serie.Titel = Request.Form["Titel"];
             serie.Date = Request.Form["Date"].ToString() == "" ? 0 : Convert.ToInt32(Request.Form["Date"]);
             serie.Genre = Request.Form["Genre"];
             serie.Restricting_age = Request.Form["Restricting_age"].ToString() == "" ? 0 : Convert.ToInt32(Request.Form["Restrcting_age"]);
             serie.Seasons = Request.Form["Seasons"].ToString() == "" ? 0 : Convert.ToInt32(Request.Form["Date"]);
-            serie.Platform = Request.Form["Platform"];
             serie.Rating = Request.Form["Rating"].ToString() == "" ? 0 : Convert.ToInt32(Request.Form["Rating"]);
 
             try
@@ -38,8 +37,8 @@ namespace MoviesAPI.Pages.Series
                 {
                     connection.Open();
                     String sql = "INSERT INTO series " +
-                                 "(Titel, Date, Genre, Restricting_age, Seasons) VALUES " +
-                                 "(@Titel, @Date, @Genre, @Restricting_age, @Seasons);";
+                                 "(Titel, Date, Genre, Restricting_age, Seasons, Rating) VALUES " +
+                                 "(@Titel, @Date, @Genre, @Restricting_age, @Seasons, @Rating);";
                     using (SqlCommand command = new SqlCommand(sql, connection))
                     {
                         command.Parameters.AddWithValue("@Titel", serie.Titel);
@@ -47,7 +46,6 @@ namespace MoviesAPI.Pages.Series
                         command.Parameters.AddWithValue("@Genre", serie.Genre);
                         command.Parameters.AddWithValue("@Restricting_age", serie.Restricting_age);
                         command.Parameters.AddWithValue("@Seasons", serie.Seasons);
-                        command.Parameters.AddWithValue("@Platform", serie.Platform);
                         command.Parameters.AddWithValue("@Rating", serie.Rating);
                         command.ExecuteNonQuery();
                     }
@@ -58,7 +56,7 @@ namespace MoviesAPI.Pages.Series
                 errorMessage = ex.Message;
                 return;
             }
-            Response.Redirect("/Movies/Index");
+            Response.Redirect("/Series/Index");
         }
     }
 

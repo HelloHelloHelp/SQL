@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Data.SqlClient;
+using MoviesAPI.Models;
 
 namespace MoviesAPI.Pages.Movies
 {
@@ -52,13 +53,12 @@ namespace MoviesAPI.Pages.Movies
                 errorMessage = ex.Message;
             }
         }
-        public void OnPost()
+        public async Task OnPost()
         {
             movie.Titel = Request.Form["Titel"];
             movie.Date = int.Parse(Request.Form["Date"]);
             movie.Genre = Request.Form["Genre"];
             movie.Restricting_age = int.Parse(Request.Form["Restricting_age"]);
-            movie.Platform = Request.Form["Platform"];
             movie.Rating = int.Parse(Request.Form["Rating"]);
 
             try             {
@@ -76,7 +76,6 @@ namespace MoviesAPI.Pages.Movies
                         command.Parameters.AddWithValue("@Genre", movie.Genre);
                         command.Parameters.AddWithValue("@Restricting_age", movie.Restricting_age);
                         command.Parameters.AddWithValue("@Watched", movie.Watched);
-                        command.Parameters.AddWithValue("@Platform", movie.Platform);
                         command.Parameters.AddWithValue("@ID", movie.ID);
                         command.Parameters.AddWithValue("@Stars", movie.Rating);
                         command.ExecuteNonQuery();

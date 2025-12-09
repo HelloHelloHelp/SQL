@@ -15,9 +15,10 @@ namespace MoviesAPI.Models
         public int? Seasons { get; set; }
         public string? Watched { get; set; }
         public int? Rating { get; set; }
-        public string? Platform { get; set; }
+        public byte[]? Poster { get; set; }
 
-        public Serie(string? titel, int? date, string? genre, int? restricting_age, int? seasons, string? watched, int? rating, string? platform)
+
+        public Serie(string? titel, int? date, string? genre, int? restricting_age, int? seasons, string? watched, int? rating, byte[]? poster)
         {
             Titel = titel;
             Date = date;
@@ -26,7 +27,7 @@ namespace MoviesAPI.Models
             Seasons = seasons;
             Watched = watched;
             Rating = rating;
-            Platform = platform;
+            Poster = poster;
         }
     }
 }
