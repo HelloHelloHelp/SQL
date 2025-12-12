@@ -24,6 +24,19 @@ namespace ZAAL_SQL.Models
         [JsonProperty("Poster")]
         public string? PosterUrl { get; set; }
 
+        [JsonProperty("Poster")]
+        [NotMapped]
+        public string? OmdbPosterUrl { get; set; }
+
+
+        [NotMapped]
+        public string? PosterBase64 =>
+            Poster != null
+                ? $"data:image/jpeg;base64,{Convert.ToBase64String(Poster)}"
+                : null;
+
+
+
         public string? ImdbRating { get; set; }
         public MovieModel(string? title, string? year, string? genre, int? restricting_age, byte[]? poster, string? imdbRating)
         {

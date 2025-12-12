@@ -1,11 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using ZAAL_SQL.Data;
 using ZAAL_SQL.Models;
 
@@ -13,9 +9,10 @@ namespace ZAAL_SQL.Pages.Series
 {
     public class EditModel : PageModel
     {
-        private readonly ZAAL_SQL.Data.Context _context;
+        private readonly Context _context;
+        private readonly HttpClient _http = new HttpClient();
 
-        public EditModel(ZAAL_SQL.Data.Context context)
+        public EditModel(Context context)
         {
             _context = context;
         }
@@ -23,30 +20,51 @@ namespace ZAAL_SQL.Pages.Series
         [BindProperty]
         public Serie Serie { get; set; } = default!;
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            Serie = await _context.Serie.FirstOrDefaultAsync(m => m.ID == id);
 
-            var serie = await _context.Serie.FirstOrDefaultAsync(m => m.ID == id);
-            if (serie == null)
-            {
+            if (Serie == null)
                 return NotFound();
-            }
-            Serie = serie;
+
             return Page();
         }
 
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more information, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
+                return Page();
+
+            string title = Serie.Title ?? "";
+            string url = $"https://www.omdbapi.com/?apikey=3f124dfe&t={Uri.EscapeDataString(title)}";
+
+            var json = await _http.GetStringAsync(url);
+            var omdb = JsonConvert.DeserializeObject<Serie>(json);
+
+            if (omdb == null || omdb.OmdbPosterUrl == "N/A")
             {
+                ModelState.AddModelError("", "No information found for this title.");
                 return Page();
             }
+
+            byte[]? posterBytes = null;
+
+            if (!string.IsNullOrEmpty(omdb.OmdbPosterUrl))
+            {
+                try
+                {
+                    posterBytes = await _http.GetByteArrayAsync(omdb.OmdbPosterUrl);
+                }
+                catch { }
+            }
+
+            Serie.Poster = posterBytes;
+            Serie.PosterUrl = omdb.OmdbPosterUrl;
+            Serie.Title = title;
+            Serie.Year = omdb.Year;
+            Serie.Genre = omdb.Genre;
+            Serie.TotalSeasons = omdb.TotalSeasons;
+            Serie.ImdbRating = omdb.ImdbRating;
 
             _context.Attach(Serie).State = EntityState.Modified;
 
@@ -57,13 +75,9 @@ namespace ZAAL_SQL.Pages.Series
             catch (DbUpdateConcurrencyException)
             {
                 if (!SerieExists(Serie.ID))
-                {
                     return NotFound();
-                }
                 else
-                {
                     throw;
-                }
             }
 
             return RedirectToPage("./Index");

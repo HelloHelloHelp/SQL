@@ -17,13 +17,10 @@
                 Title
             </th>
             <th>
-                Release date
+                Release year
             </th>
             <th>
              Genre
-            </th>
-            <th>
-                Restricting age
             </th>
             <th>
                Seasons
@@ -44,22 +41,27 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Titel)
+                    @Html.DisplayFor(modelItem => item.Title)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Date)
+                    @Html.DisplayFor(modelItem => item.Year)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Genre)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Restricting_age)
+                    @Html.DisplayFor(modelItem => item.TotalSeasons)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Seasons)
-                </td>
-                <td>
-                    <p>@Html.DisplayFor(modelItem => item.Poster)</p>
+                    @if (item.Poster != null)
+                    {
+                        <img src="data:image/jpeg;base64,@Convert.ToBase64String(item.Poster)"
+                             style="width:120px; height:auto;" />
+                    }
+                    else
+                    {
+                        <span>No poster</span>
+                    }
                 </td>
                 <td>
                     <form method="post" asp-page-handler="SetWatched" class="m-0 p-0">
@@ -115,7 +117,7 @@
                     </form>
                 </td>
                 <td>
-                    <p>@Html.DisplayFor(modelItem => item.Rating) /10</p>
+                    <p>@Html.DisplayFor(modelItem => item.ImdbRating) /10</p>
                 </td>
                 <td>
                     <a class='btn btn-primary brn-sm' href='/Series/Edit?id=@item.ID'>Edit</a>

@@ -35,12 +35,12 @@ namespace ZAAL_SQL.Pages.LFMAS.LFS
                 TempData["Message"] = "added to your serie list!";
                 var newSerie = new Serie
                 {
-                    Titel = Serie?.Titel,
-                    Date = Serie?.Date,
+                    Title = Serie?.Title,
+                    Year = Serie?.Year,
                     Genre = Serie?.Genre,
                     Restricting_age = Serie?.Restricting_age,
-                    Seasons = Serie?.Seasons,
-                    Rating = Serie?.Rating,
+                    TotalSeasons = Serie?.TotalSeasons,
+                    ImdbRating = Serie?.ImdbRating,
                     Poster = Serie?.Poster,
                 };
 

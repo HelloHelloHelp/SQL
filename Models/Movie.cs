@@ -19,8 +19,19 @@ namespace ZAAL_SQL.Models
         [JsonIgnore]
         public byte[]? Poster { get; set; }
 
-        [JsonProperty("Poster")]
+
         public string? PosterUrl { get; set; }
+
+
+        [JsonProperty("Poster")]
+        [NotMapped]
+        public string? OmdbPosterUrl { get; set; }
+
+        [NotMapped]
+        public string? PosterBase64 =>
+            Poster != null
+                ? $"data:image/jpeg;base64,{Convert.ToBase64String(Poster)}"
+                : null;
 
         public string? Watched { get; set; }
         public string? ImdbRating { get; set; }

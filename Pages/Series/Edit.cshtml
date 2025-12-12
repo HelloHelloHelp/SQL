@@ -16,14 +16,14 @@
             <input type="hidden" asp-for="Serie.ID" />
             <div class="form-group">
                 <p>Title</p>
-                <input asp-for="Serie.Titel" class="form-control" />
-                <span asp-validation-for="Serie.Titel" class="text-danger"></span>
+                <input asp-for="Serie.Title" class="form-control" />
+                <span asp-validation-for="Serie.Title" class="text-danger"></span>
             </div>
             <br>
             <div class="form-group">
                 <p>Release date</p>
-                <input asp-for="Serie.Date" class="form-control" />
-                <span asp-validation-for="Serie.Date" class="text-danger"></span>
+                <input asp-for="Serie.Year" class="form-control" />
+                <span asp-validation-for="Serie.Year" class="text-danger"></span>
             </div>
             <br>
             <div class="form-group">
@@ -33,21 +33,15 @@
             </div>
             <br>
             <div class="form-group">
-                <p>Restricting age</p>
-                <input asp-for="Serie.Restricting_age" class="form-control" />
-                <span asp-validation-for="Serie.Restricting_age" class="text-danger"></span>
+                <p>Seasons</p>
+                <input asp-for="Serie.TotalSeasons" class="form-control" />
+                <span asp-validation-for="Serie.TotalSeasons" class="text-danger"></span>
             </div>
             <br>
             <div class="form-group">
-                <label asp-for="Serie.Seasons" class="control-label"></label>
-                <input asp-for="Serie.Seasons" class="form-control" />
-                <span asp-validation-for="Serie.Seasons" class="text-danger"></span>
-            </div>
-            <br>
-            <div class="form-group">
-                <label asp-for="Serie.Rating" class="control-label"></label>
-                <input asp-for="Serie.Rating" class="form-control" />
-                <span asp-validation-for="Serie.Rating" class="text-danger"></span>
+                <p>Rating</p>
+                <input asp-for="Serie.ImdbRating" class="form-control" />
+                <span asp-validation-for="Serie.ImdbRating" class="text-danger"></span>
             </div>
 
             <div class="form-group">

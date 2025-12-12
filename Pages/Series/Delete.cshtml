@@ -15,13 +15,13 @@
             <p>Title</p>
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Serie.Titel)
+            @Html.DisplayFor(model => model.Serie.Title)
         </dd>
         <dt class="col-sm-2">
-            <p>Release date</p>
+            <p>Release year</p>
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Serie.Date)
+            @Html.DisplayFor(model => model.Serie.Year)
         </dd>
         <dt class="col-sm-2">
             <p>Genre</p>
@@ -30,25 +30,16 @@
             @Html.DisplayFor(model => model.Serie.Genre)
         </dd>
         <dt class="col-sm-2">
-            <p>Restricting age</p>
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Serie.Restricting_age)
-        </dd>
-        <dt class="col-sm-2">
             <p>Seasons</p>
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Serie.Seasons)
+            @Html.DisplayFor(model => model.Serie.TotalSeasons)
         </dd>
-        <dt class="col-sm-2">
-            <p>Platform</p>
-        </dt>
         <dt class="col-sm-2">
             <p>Rating</p>
         </dt>
         <dd class="col-sm-10">
-            <p> @Html.DisplayFor(model => model.Serie.Rating)/10</p>
+            <p> @Html.DisplayFor(model => model.Serie.ImdbRating)/10</p>
         </dd>
     </dl>
 
