@@ -12,50 +12,61 @@ using Newtonsoft.Json;
 var builder = WebApplication.CreateBuilder(args);
 
 LFM movie = null;
+byte[]? posterBytes = null; 
 
 using (var httpClient = new HttpClient())
 {
-    var endpoint = new Uri("https://www.omdbapi.com/?apikey=3f124dfe&t=Pluribus");
+    var endpoint = new Uri("https://www.omdbapi.com/?apikey=3f124dfe&t=Mulan");
     var result = await httpClient.GetAsync(endpoint);
 
-    if (result.IsSuccessStatusCode)
+    if (!result.IsSuccessStatusCode)
+        throw new Exception("Failed to fetch movie data.");
+
+    var content = await result.Content.ReadAsStringAsync();
+    movie = JsonConvert.DeserializeObject<LFM>(content)
+            ?? throw new Exception("Movie API returned null.");
+
+
+    if (!string.IsNullOrEmpty(movie.OmdbPosterUrl) && movie.OmdbPosterUrl != "N/A")
     {
-        var content = await result.Content.ReadAsStringAsync();
-        movie = JsonConvert.DeserializeObject<LFM>(content);
+        try
+        {
+            posterBytes = await httpClient.GetByteArrayAsync(movie.OmdbPosterUrl);
+
+            movie.PosterUrl = movie.OmdbPosterUrl;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Poster download failed: " + ex.Message);
+        }
     }
+
+
+    movie.Poster = posterBytes;
 }
 
-if (movie == null)
-    throw new Exception("Movie API returned null.");
-
-
-byte[] posterBytes = null;
-
-if (!string.IsNullOrEmpty(movie.Poster))
-{
-    using var httpClient = new HttpClient();
-    posterBytes = await httpClient.GetByteArrayAsync(movie.Poster);
-}
-
-using (SqlConnection conn = new SqlConnection("Data Source=localhost;Initial Catalog=LFMAS;Integrated Security=True;Encrypt=True;Trust Server Certificate=True"))
+using (SqlConnection conn = new SqlConnection(
+    "Data Source=localhost;Initial Catalog=LFMAS;Integrated Security=True;Encrypt=True;Trust Server Certificate=True"))
 {
     conn.Open();
 
     string query = @"
-        INSERT INTO LFM (Title, Year, Genre, Poster, ImdbRating)
-        VALUES (@Title , @Year, @Genre, @Poster, @ImdbRating)";
+       INSERT INTO LFM (Title, Year, Genre, Poster, PosterUrl, ImdbRating)
+        VALUES (@Title , @Year, @Genre, @Poster, @PosterUrl, @ImdbRating)";
 
     using (SqlCommand cmd = new SqlCommand(query, conn))
     {
-        cmd.Parameters.AddWithValue("@Title ", movie.Title);
-        cmd.Parameters.AddWithValue("@Year", movie.Year);
-        cmd.Parameters.AddWithValue("@Genre", movie.Genre);
+        cmd.Parameters.AddWithValue("@Title", movie.Title ?? (object)DBNull.Value);
+        cmd.Parameters.AddWithValue("@Year", movie.Year ?? (object)DBNull.Value);
+        cmd.Parameters.AddWithValue("@Genre", movie.Genre ?? (object)DBNull.Value);
         cmd.Parameters.AddWithValue("@Poster", (object?)posterBytes ?? DBNull.Value);
-        cmd.Parameters.AddWithValue("@ImdbRating", movie.ImdbRating);
+        cmd.Parameters.AddWithValue("@PosterUrl", movie.PosterUrl ?? (object)DBNull.Value);
+        cmd.Parameters.AddWithValue("@ImdbRating", movie.ImdbRating ?? (object)DBNull.Value);
 
         cmd.ExecuteNonQuery();
     }
 }
+
 
 
 

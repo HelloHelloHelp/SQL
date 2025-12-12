@@ -229,7 +229,21 @@
           },
           "poster": {
             "type": "string",
+            "format": "byte",
             "nullable": true
+          },
+          "posterUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "omdbPosterUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "posterBase64": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
           },
           "imdbRating": {
             "type": "string",
@@ -287,13 +301,12 @@
             "type": "integer",
             "format": "int32"
           },
-          "titel": {
+          "title": {
             "type": "string",
             "nullable": true
           },
-          "date": {
-            "type": "integer",
-            "format": "int32",
+          "year": {
+            "type": "string",
             "nullable": true
           },
           "genre": {
@@ -305,18 +318,17 @@
             "format": "int32",
             "nullable": true
           },
+          "watched": {
+            "type": "string",
+            "nullable": true
+          },
           "poster": {
             "type": "string",
             "format": "byte",
             "nullable": true
           },
-          "watched": {
+          "imdbRating": {
             "type": "string",
-            "nullable": true
-          },
-          "rating": {
-            "type": "integer",
-            "format": "int32",
             "nullable": true
           }
         },

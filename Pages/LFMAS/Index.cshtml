@@ -25,9 +25,16 @@
 				<td>@movie.Year</td>
 				<td>@movie.Genre</td>
 				<td>@movie.Restricting_age</td>
-				<td>@movie.Poster</td>
-				<th>@movie.ImdbRating</th>
+				<td>
+					@if (movie.Poster != null)
+					{
+						<img src="@movie.Poster" alt="Poster" style="width:200px;" />
+					}
+				</td>
+				<td>@movie.ImdbRating</td>
 			</tr>
+
+		
 		}
 
 	</tbody>

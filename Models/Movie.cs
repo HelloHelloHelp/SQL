@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace MoviesAPI.Models
@@ -16,9 +17,9 @@ namespace MoviesAPI.Models
         public string? Genre { get; set; }
         public int? Restricting_age { get; set; }
         public string? Watched { get; set; }
-        public string? Poster { get; set; }
+        public byte[]? Poster { get; set; }
         public string? ImdbRating { get; set; }
-        public Movie(string? title, string? year, string? genre, string? watched, int? restricting_age, string? poster, string? imdbRating)
+        public Movie(string? title, string? year, string? genre, string? watched, int? restricting_age, byte[]? poster, string? imdbRating)
         {
             Title = title;
             Year = year;

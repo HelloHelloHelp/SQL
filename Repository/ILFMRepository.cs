@@ -43,7 +43,15 @@ namespace MoviesAPI.Repository
                             Mrecommend.Year = reader["Year"].ToString();
                             Mrecommend.Genre = reader["Genre"].ToString();
                             Mrecommend.Restricting_age = reader["Restricting_age"] == DBNull.Value ? null : (int)reader["Restricting_age"];
-                            Mrecommend.Poster = reader["Poster"].ToString();
+                            if (!reader.IsDBNull(reader.GetOrdinal("Poster")))
+                            {
+                                Mrecommend.Poster = (byte[])reader["Poster"];
+                            }
+                            else
+                            {
+                                Mrecommend.Poster = null;
+                            }
+
                             Mrecommend.ImdbRating = reader["ImdbRating"].ToString();
                             Mrecommends.Add(Mrecommend);
                         }
