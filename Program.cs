@@ -1,12 +1,10 @@
 using System.Net.Http;
-using Azure;
-using Azure.Core;
 using Microsoft.Data.SqlClient;
-using Microsoft.IdentityModel.Tokens;
 using MoviesAPI.Models;
 using MoviesAPI.Repository;
 using MoviesAPI.Service;
 using Newtonsoft.Json;
+using static System.Net.WebRequestMethods;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -72,7 +70,8 @@ using (SqlConnection conn = new SqlConnection(
 
 using (var httpClient = new HttpClient())
 {
-    var endpoint = new Uri("https://www.omdbapi.com/?apikey=3f124dfe&t=Pluribus");
+    Random Titles =;
+    var endpoint = new Uri($"https://www.omdbapi.com/?apikey=3f124dfe&t={Titles}");
     var result = await httpClient.GetAsync(endpoint);
 
     if (!result.IsSuccessStatusCode)
@@ -109,7 +108,6 @@ using (SqlConnection conn = new SqlConnection(
     string query = @"
     INSERT INTO LFS (Title, Year, Genre, TotalSeasons, Poster, PosterUrl, ImdbRating)
     VALUES (@Title, @Year, @Genre, @TotalSeasons, @Poster, @PosterUrl, @ImdbRating)";
-   
 
 
     using (SqlCommand cmd = new SqlCommand(query, conn))
