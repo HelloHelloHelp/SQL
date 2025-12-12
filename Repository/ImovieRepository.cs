@@ -39,7 +39,7 @@ namespace MoviesAPI.Repository
                             {
                                 movie.Poster = null;
                             }
-
+                            movie.Watched = reader["Watched"].ToString();
                             movie.ImdbRating = reader["ImdbRating"].ToString();
                             movies.Add(movie);
                         }

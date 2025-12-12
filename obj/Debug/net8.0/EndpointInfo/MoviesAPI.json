@@ -259,13 +259,12 @@
             "type": "integer",
             "format": "int32"
           },
-          "titel": {
+          "title": {
             "type": "string",
             "nullable": true
           },
-          "date": {
-            "type": "integer",
-            "format": "int32",
+          "year": {
+            "type": "string",
             "nullable": true
           },
           "genre": {
@@ -277,17 +276,29 @@
             "format": "int32",
             "nullable": true
           },
-          "seasons": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "rating": {
-            "type": "integer",
-            "format": "int32",
+          "totalSeasons": {
+            "type": "string",
             "nullable": true
           },
           "poster": {
+            "type": "string",
+            "format": "byte",
+            "nullable": true
+          },
+          "posterUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "omdbPosterUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "posterBase64": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "imdbRating": {
             "type": "string",
             "nullable": true
           }
@@ -341,13 +352,12 @@
             "type": "integer",
             "format": "int32"
           },
-          "titel": {
+          "title": {
             "type": "string",
             "nullable": true
           },
-          "date": {
-            "type": "integer",
-            "format": "int32",
+          "year": {
+            "type": "string",
             "nullable": true
           },
           "genre": {
@@ -359,23 +369,21 @@
             "format": "int32",
             "nullable": true
           },
-          "seasons": {
-            "type": "integer",
-            "format": "int32",
+          "totalSeasons": {
+            "type": "string",
             "nullable": true
           },
           "watched": {
             "type": "string",
             "nullable": true
           },
-          "rating": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
           "poster": {
             "type": "string",
             "format": "byte",
+            "nullable": true
+          },
+          "imdbRating": {
+            "type": "string",
             "nullable": true
           }
         },

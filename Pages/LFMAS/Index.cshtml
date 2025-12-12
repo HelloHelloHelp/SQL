@@ -49,6 +49,7 @@
 			<th>Date</th>
 			<th>Genre</th>
 			<th>Restricting age</th>
+			<th>Seasons</th>
 			<th>Poster</th>
 		</tr>
 	</thead>
@@ -57,12 +58,18 @@
 		{
 			<tr>
 			<td>@serie.ID</td>
-				<td>@serie.Titel</td>
-				<td>@serie.Date</td>
+				<td>@serie.Title</td>
+				<td>@serie.Year</td>
 				<td>@serie.Genre</td>
 				<td>@serie.Restricting_age</td>
-				<td>@serie.Poster</td>
-		       <th>@serie.Rating</th>
+				<th>@serie.TotalSeasons</th>
+				<td>
+					@if (serie.Poster != null)
+					{
+						<img src="@serie.Poster" alt="Poster" style="width:200px;" />
+					}
+				</td>
+		       <th>@serie.ImdbRating</th>
 			</tr>
 		}
 	</tbody>

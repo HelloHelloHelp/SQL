@@ -29,13 +29,13 @@ namespace MoviesAPI.Repository
                         {
                             Models.LFS Srecommend = new Models.LFS();
                             Srecommend.ID = (int)reader["ID"];
-                            Srecommend.Titel = reader["Titel"].ToString();
-                            Srecommend.Date = (int)reader["Date"];
+                            Srecommend.Title = reader["Title"].ToString();
+                            Srecommend.Year = reader["Year"].ToString();
                             Srecommend.Genre = reader["Genre"].ToString();
                             Srecommend.Restricting_age = reader["Restricting_age"] == DBNull.Value ? null : (int)reader["Restricting_age"];
-                            Srecommend.Seasons = (int)reader["Seasons"];
-                            Srecommend.Poster = reader["Poster"].ToString();
-                            Srecommend.Rating = reader.IsDBNull(reader.GetOrdinal("Rating")) ? 0 : reader.GetInt32(reader.GetOrdinal("Rating"));
+                            Srecommend.TotalSeasons = reader["TotalSeasons"].ToString();
+                            Srecommend.Poster = reader["Poster"] == DBNull.Value ? null : (byte[])reader["Poster"];
+                            Srecommend.ImdbRating = reader["ImdbRating"].ToString();
                             Srecommends.Add(Srecommend);
                         }
                     }

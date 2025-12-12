@@ -27,14 +27,19 @@
 		{
 			<tr>
 				<td>@serie.ID</td>
-				<td>@serie.Titel</td>
-				<td>@serie.Date</td>
+				<td>@serie.Title</td>
+				<td>@serie.Year</td>
 				<td>@serie.Genre</td>
 				<td>@serie.Restricting_age</td>
-				<th>@serie.Seasons</th>
-				<td>@serie.Poster</td>
+				<th>@serie.TotalSeasons</th>
+				<td>
+					@if (serie.Poster != null)
+					{
+						<img src="@serie.Poster" alt="Poster" style="width:200px;" />
+					}
+				</td>
 				<td>@serie.Watched</td>
-				<td>@serie.Rating</td>
+				<td>@serie.ImdbRating</td>
 
 				<td>
 					<a class='btn-primary btn-primary btn-sm' href="/Movies/Edit?id=@serie.ID">Edit</a>

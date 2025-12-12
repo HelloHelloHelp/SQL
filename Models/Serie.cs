@@ -7,27 +7,27 @@ namespace MoviesAPI.Models
     {
         public Serie() { }
 
-        public int ID { get; set; }
-        public string? Titel { get; set; }
-        public int? Date { get; set; }
+          public int ID { get; set; }
+        public string? Title { get; set; }
+
+        public string? Year { get; set; }
+
         public string? Genre { get; set; }
         public int? Restricting_age { get; set; }
-        public int? Seasons { get; set; }
+        public string? TotalSeasons { get; set; }
         public string? Watched { get; set; }
-        public int? Rating { get; set; }
         public byte[]? Poster { get; set; }
-
-
-        public Serie(string? titel, int? date, string? genre, int? restricting_age, int? seasons, string? watched, int? rating, byte[]? poster)
+        public string? ImdbRating { get; set; }
+        public Serie(string? title, string? year, string? genre, string? watched, string? totalSeasons, int? restricting_age, byte[]? poster, string? imdbRating)
         {
-            Titel = titel;
-            Date = date;
+            Title = title;
+            Year = year;
             Genre = genre;
-            Restricting_age = restricting_age;
-            Seasons = seasons;
             Watched = watched;
-            Rating = rating;
+            Restricting_age = restricting_age;
+            TotalSeasons = totalSeasons;
             Poster = poster;
+            ImdbRating = imdbRating;
         }
     }
 }

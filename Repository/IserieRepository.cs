@@ -28,14 +28,14 @@ namespace MoviesAPI.Repository
                         {
                             Models.Serie serie = new Models.Serie();
                             serie.ID = (int)reader["ID"];
-                            serie.Titel = reader["Titel"].ToString();
-                            serie.Date = (int)reader["Date"];
+                            serie.Title = reader["Title"].ToString();
+                            serie.Year = reader["Year"].ToString();
                             serie.Genre = reader["Genre"].ToString();
                             serie.Restricting_age = reader["Restricting_age"] == DBNull.Value ? null : (int)reader["Restricting_age"];
-                            serie.Seasons = (int)reader["Seasons"];
+                            serie.TotalSeasons = reader["TotalSeasons"].ToString();
                             serie.Poster = reader["Poster"] == DBNull.Value ? null : (byte[])reader["Poster"];
                             serie.Watched = reader["Watched"].ToString();
-                            serie.Rating = reader.IsDBNull(reader.GetOrdinal("Rating")) ? 0 : reader.GetInt32(reader.GetOrdinal("Rating"));
+                            serie.ImdbRating = reader["ImdbRating"].ToString();
                             series.Add(serie);
                         }
                     }

@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using Newtonsoft.Json;
 
 namespace MoviesAPI.Models
 {
@@ -8,23 +9,45 @@ namespace MoviesAPI.Models
         public LFS() { }
 
         public int ID { get; set; }
-        public string? Titel { get; set; }
-        public int? Date { get; set; }
+        public string? Title { get; set; }
+        public string? Year { get; set; }
         public string? Genre { get; set; }
         public int? Restricting_age { get; set; }
-        public int? Seasons { get; set; }
-        public int? Rating { get; set; }
-        public string? Poster { get; set; }
 
-        public LFS(string? titel, int? date, string? genre, int? restricting_age, int? seasons, int? rating, string? poster)
+        public string? TotalSeasons { get; set; }
+
+        [JsonIgnore]
+        public byte[]? Poster { get; set; }
+
+
+        [Column("PosterUrl")]
+        public string? PosterUrl { get; set; }
+
+
+        [JsonProperty("Poster")]
+        [NotMapped]
+        public string? OmdbPosterUrl { get; set; }
+
+
+        [NotMapped]
+        public string? PosterBase64 =>
+            Poster != null
+                ? $"data:image/jpeg;base64,{Convert.ToBase64String(Poster)}"
+                : null;
+
+
+
+        public string? ImdbRating { get; set; }
+        public LFS(string? title, string? year, string? genre, int? restricting_age, string? totalSeasons, byte[]? poster, string? posterurl, string? imdbRating)
         {
-            Titel = titel;
-            Date = date;
+            Title = title;
+            Year = year;
             Genre = genre;
             Restricting_age = restricting_age;
-            Seasons = seasons;
-            Rating = rating;
             Poster = poster;
+            PosterUrl = posterurl;
+            ImdbRating = imdbRating;    
+            TotalSeasons = totalSeasons;
         }
     }
 }

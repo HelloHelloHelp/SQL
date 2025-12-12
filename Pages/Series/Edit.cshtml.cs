@@ -38,13 +38,13 @@ namespace MoviesAPI.Pages.Series
                             if (reader.Read())
                             {
                                 serie.ID = reader.GetInt32("ID");
-                                serie.Titel = reader.GetString("Titel");
-                                serie.Date = reader.GetInt32("Date");
+                                serie.Title = reader.GetString("Title");
+                                serie.Year = reader.GetString("Year");
                                 serie.Genre = reader.GetString("Genre");
                                 serie.Restricting_age = reader.GetInt32("Restricting_age");
                                 serie.Poster = reader["Poster"] == DBNull.Value ? null : (byte[])reader["Poster"];
-                                serie.Seasons = reader.GetInt32("Seasons");
-                                serie.Rating = reader.GetInt32("Rating");
+                                serie.TotalSeasons = reader.GetString("TotalSeasons");
+                                serie.ImdbRating = reader.GetString("ImdbRating");
                             }
                         }
                     }
@@ -57,12 +57,12 @@ namespace MoviesAPI.Pages.Series
         }
         public async Task OnPost()
         {
-            serie.Titel = Request.Form["Titel"];
-            serie.Date = int.Parse(Request.Form["Date"]);
+            serie.Title = Request.Form["Title"];
+            serie.Year = Request.Form["Year"];
             serie.Genre = Request.Form["Genre"];
             serie.Restricting_age = int.Parse(Request.Form["Restricting_age"]);
-            serie.Seasons = int.Parse(Request.Form["Seasons"]);
-            serie.Rating = int.Parse(Request.Form["Rating"]);
+            serie.TotalSeasons = Request.Form["TotalSeasons"];
+            serie.ImdbRating = Request.Form["ImdbRating"];
             var file = Request.Form.Files["Poster"];
             if (file != null && file.Length > 0)
             {
@@ -81,17 +81,18 @@ namespace MoviesAPI.Pages.Series
                 {
                     connection.Open();
                     String sql = "UPDATE series " +
-                                 "SET Titel=@Titel, Date=@Date, Genre=@Genre, Restricting_age=@Restricting_age, Seasons=@Seasons " +
+                                 "SET Title=@Title, Year=@Year, Genre=@Genre, Restricting_age=@Restricting_age, TotalSeasons=@TotalSeasons " +
                                  "WHERE ID=@ID;";
                     using (SqlCommand command = new SqlCommand(sql, connection))
                     {
-                        command.Parameters.AddWithValue("@Titel", serie.Titel);
-                        command.Parameters.AddWithValue("@Date", serie.Date);
+                        command.Parameters.AddWithValue("@Title", serie.Title);
+                        command.Parameters.AddWithValue("@Year", serie.Year);
                         command.Parameters.AddWithValue("@Genre", serie.Genre);
                         command.Parameters.AddWithValue("@Restricting_age", serie.Restricting_age);
+                        command.Parameters.AddWithValue("@TotalSeasons", serie.TotalSeasons);
                         command.Parameters.AddWithValue("@Poster", serie.Poster);
                         command.Parameters.AddWithValue("@ID", serie.ID);
-                        command.Parameters.AddWithValue("@Rating", serie.Rating);
+                        command.Parameters.AddWithValue("@ImdbRating", serie.ImdbRating);
                         command.ExecuteNonQuery();
                     }
                 }

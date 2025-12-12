@@ -12,6 +12,7 @@ using Newtonsoft.Json;
 var builder = WebApplication.CreateBuilder(args);
 
 LFM movie = null;
+LFS serie = null;
 byte[]? posterBytes = null; 
 
 using (var httpClient = new HttpClient())
@@ -67,6 +68,63 @@ using (SqlConnection conn = new SqlConnection(
     }
 }
 
+
+
+using (var httpClient = new HttpClient())
+{
+    var endpoint = new Uri("https://www.omdbapi.com/?apikey=3f124dfe&t=Pluribus");
+    var result = await httpClient.GetAsync(endpoint);
+
+    if (!result.IsSuccessStatusCode)
+        throw new Exception("Failed to fetch movie data.");
+
+    var content = await result.Content.ReadAsStringAsync();
+    serie = JsonConvert.DeserializeObject<LFS>(content)
+            ?? throw new Exception("Movie API returned null.");
+
+
+    if (!string.IsNullOrEmpty(serie.OmdbPosterUrl) && serie.OmdbPosterUrl != "N/A")
+    {
+        try
+        {
+            posterBytes = await httpClient.GetByteArrayAsync(serie.OmdbPosterUrl);
+
+            serie.PosterUrl = serie.OmdbPosterUrl;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Poster download failed: " + ex.Message);
+        }
+    }
+
+
+    serie.Poster = posterBytes;
+}
+
+using (SqlConnection conn = new SqlConnection(
+    "Data Source=localhost;Initial Catalog=LFMAS;Integrated Security=True;Encrypt=True;Trust Server Certificate=True"))
+{
+    conn.Open();
+
+    string query = @"
+    INSERT INTO LFS (Title, Year, Genre, TotalSeasons, Poster, PosterUrl, ImdbRating)
+    VALUES (@Title, @Year, @Genre, @TotalSeasons, @Poster, @PosterUrl, @ImdbRating)";
+   
+
+
+    using (SqlCommand cmd = new SqlCommand(query, conn))
+    {
+        cmd.Parameters.AddWithValue("@Title", serie.Title ?? (object)DBNull.Value);
+        cmd.Parameters.AddWithValue("@Year", serie.Year ?? (object)DBNull.Value);
+        cmd.Parameters.AddWithValue("@Genre", serie.Genre ?? (object)DBNull.Value);
+        cmd.Parameters.AddWithValue("@TotalSeasons", serie.TotalSeasons ?? (object)DBNull.Value);
+        cmd.Parameters.AddWithValue("@Poster", (object?)posterBytes ?? DBNull.Value);
+        cmd.Parameters.AddWithValue("@PosterUrl", serie.PosterUrl ?? (object)DBNull.Value);
+        cmd.Parameters.AddWithValue("@ImdbRating", serie.ImdbRating ?? (object)DBNull.Value);
+
+        cmd.ExecuteNonQuery();
+    }
+}
 
 
 

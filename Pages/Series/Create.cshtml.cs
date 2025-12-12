@@ -23,12 +23,12 @@ namespace MoviesAPI.Pages.Series
 
         public async Task OnPost()
         {
-            serie.Titel = Request.Form["Titel"];
-            serie.Date = Request.Form["Date"].ToString() == "" ? 0 : Convert.ToInt32(Request.Form["Date"]);
+            serie.Title = Request.Form["Title"];
+            serie.Year = Request.Form["Year"].ToString();
             serie.Genre = Request.Form["Genre"];
             serie.Restricting_age = Request.Form["Restricting_age"].ToString() == "" ? 0 : Convert.ToInt32(Request.Form["Restrcting_age"]);
-            serie.Seasons = Request.Form["Seasons"].ToString() == "" ? 0 : Convert.ToInt32(Request.Form["Date"]);
-            serie.Rating = Request.Form["Rating"].ToString() == "" ? 0 : Convert.ToInt32(Request.Form["Rating"]);
+            serie.TotalSeasons = Request.Form["TotalSeasons"];
+            serie.ImdbRating = Request.Form["Rating"].ToString();
 
             try
             {
@@ -37,16 +37,16 @@ namespace MoviesAPI.Pages.Series
                 {
                     connection.Open();
                     String sql = "INSERT INTO series " +
-                                 "(Titel, Date, Genre, Restricting_age, Seasons, Rating) VALUES " +
-                                 "(@Titel, @Date, @Genre, @Restricting_age, @Seasons, @Rating);";
+                                 "(Title, Year, Genre, Restricting_age, TotalSeasons, ImdbRating) VALUES " +
+                                 "(@Title, @Year, @Genre, @Restricting_age, @TotalSeasons, @ImdbRating);";
                     using (SqlCommand command = new SqlCommand(sql, connection))
                     {
-                        command.Parameters.AddWithValue("@Titel", serie.Titel);
-                        command.Parameters.AddWithValue("@Date", serie.Date);
+                        command.Parameters.AddWithValue("@Title", serie.Title);
+                        command.Parameters.AddWithValue("@Year", serie.Year);
                         command.Parameters.AddWithValue("@Genre", serie.Genre);
                         command.Parameters.AddWithValue("@Restricting_age", serie.Restricting_age);
-                        command.Parameters.AddWithValue("@Seasons", serie.Seasons);
-                        command.Parameters.AddWithValue("@Rating", serie.Rating);
+                        command.Parameters.AddWithValue("@TotalSeasons", serie.TotalSeasons);
+                        command.Parameters.AddWithValue("@ImdbRating", serie.ImdbRating);
                         command.ExecuteNonQuery();
                     }
                 }
