@@ -16,14 +16,14 @@
             <input type="hidden" asp-for="Movie.ID" />
             <div class="form-group">
                 <p>Title</p>
-                <input asp-for="Movie.Titel" class="form-control" />
-                <span asp-validation-for="Movie.Titel" class="text-danger"></span>
+                <input asp-for="Movie.Title" class="form-control" />
+                <span asp-validation-for="Movie.Title" class="text-danger"></span>
             </div>
             <br>
             <div class="form-group">
                 <p>Release date</p>
-                <input asp-for="Movie.Date" class="form-control" />
-                <span asp-validation-for="Movie.Date" class="text-danger"></span>
+                <input asp-for="Movie.Year" class="form-control" />
+                <span asp-validation-for="Movie.Year" class="text-danger"></span>
             </div>
             <br>
             <div class="form-group">
@@ -40,9 +40,9 @@
                 <br />
             <br>
             <div class="form-group">
-                <label asp-for="Movie.Rating" class="control-label"></label>
-                 <input asp-for="Movie.Rating" class="form-control" />
-                <span asp-validation-for="Movie.Rating" class="text-danger"></span>
+                <label asp-for="Movie.ImdbRating" class="control-label"></label>
+                 <input asp-for="Movie.ImdbRating" class="form-control" />
+                <span asp-validation-for="Movie.ImdbRating" class="text-danger"></span>
             </div>
             
             <div class="form-group">

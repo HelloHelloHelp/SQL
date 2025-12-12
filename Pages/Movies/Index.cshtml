@@ -17,7 +17,7 @@
              Title
             </th>
             <th>
-            Release date
+            Release year
             </th>
             <th>
              Genre
@@ -40,10 +40,10 @@
 @foreach (var item in Model.Movie) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Titel)
+                @Html.DisplayFor(modelItem => item.Title)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Date)
+                @Html.DisplayFor(modelItem => item.Year)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Genre)
@@ -108,7 +108,7 @@
                     </form>
                 </td>
                 <td>
-                 <p>@Html.DisplayFor(modelItem => item.Rating) /10</p>
+                 <p>@Html.DisplayFor(modelItem => item.ImdbRating) /10</p>
 				</td>
             <td>
                     <a class='btn btn-primary brn-sm' href='/Movies/Edit?id=@item.ID'>Edit</a>

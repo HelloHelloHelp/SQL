@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using Newtonsoft.Json;
 
 namespace ZAAL_SQL.Models
 {
@@ -8,23 +9,30 @@ namespace ZAAL_SQL.Models
         public Movie() { }
 
         public int ID { get; set; }
-        public string? Titel { get; set; }
-        public int? Date { get; set; }
+        public string? Title { get; set; }
+
+        public string? Year { get; set; }
+
         public string? Genre { get; set; }
         public int? Restricting_age { get; set; }
-      public  string? Watched { get; set; }
-        public int? Rating { get; set; }
+
+        [JsonIgnore]
         public byte[]? Poster { get; set; }
 
-        public Movie(string? titel, int? date, string? genre, int? restricting_age, string? watched, int? rating, byte[]? poster)
+        [JsonProperty("Poster")]
+        public string? PosterUrl { get; set; }
+
+        public string? Watched { get; set; }
+        public string? ImdbRating { get; set; }
+        public Movie(string? title, string? year, string? genre, int? restricting_age, byte[]? poster, string? watched, string? imdbRating)
         {
-            Titel = titel;
-            Date = date;
+            Title = title;
+            Year = year;
             Genre = genre;
             Restricting_age = restricting_age;
-            Watched = watched;
-            Rating = rating;
             Poster = poster;
+            Watched = watched;
+            ImdbRating = imdbRating;
         }
     }
 }
