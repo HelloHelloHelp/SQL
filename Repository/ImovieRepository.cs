@@ -31,6 +31,7 @@ namespace MoviesAPI.Repository
                             movie.Year = reader["Year"].ToString();
                             movie.Genre = reader["Genre"].ToString();
                             movie.Restricting_age = reader["Restricting_age"] == DBNull.Value ? null : (int)reader["Restricting_age"];
+                            movie.Plot = reader["Plot"].ToString();
                             if (!reader.IsDBNull(reader.GetOrdinal("Poster")))
                             {
                                 movie.Poster = (byte[])reader["Poster"];

@@ -28,20 +28,11 @@ namespace MoviesAPI.Pages.LFMAS
                             {
                                 MoviesAPI.Models.LFM movie = new MoviesAPI.Models.LFM();
                                 movie.ID = (int)reader["ID"];
-                                movie.Title = reader["Title "].ToString();
+                                movie.Title = reader["Title"].ToString();
                                 movie.Year = reader["Year"].ToString();
                                 movie.Genre = reader["Genre"].ToString();
                                 movie.Restricting_age = reader["Restricting_age"] == DBNull.Value ? null : (int)reader["Restricting_age"];
-                                if (!reader.IsDBNull(reader.GetOrdinal("Poster")))
-                                {
-                                    movie.Poster = (byte[])reader["Poster"];
-                                }
-                                else
-                                {
-                                    movie.Poster = null;
-                                }
-
-
+                                movie.Plot = reader.IsDBNull("Plot") ? null : reader.GetString("Plot");
                                 movie.ImdbRating = reader["ImdbRating"].ToString();
                                 Movies.Add(movie);
                             }
@@ -82,6 +73,7 @@ namespace MoviesAPI.Pages.LFMAS
                                 serie.Genre = reader["Genre"].ToString();
                                 serie.Restricting_age = reader["Restricting_age"] == DBNull.Value ? null : (int)reader["Restricting_age"];
                                 serie.TotalSeasons = reader["TotalSeasons"].ToString();
+                                serie.Plot = reader.IsDBNull("Plot") ? null : reader.GetString("Plot");
                                 serie.Poster = reader["Poster"] == DBNull.Value ? null : (byte[])reader["Poster"];
                                 serie.ImdbRating = reader["ImdbRating"].ToString();
                                 Series.Add(serie);

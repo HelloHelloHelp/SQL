@@ -27,6 +27,7 @@ namespace MoviesAPI.Pages.Movies
             movie.Year = Request.Form["Year"];
             movie.Genre = Request.Form["Genre"];
             movie.Restricting_age = Request.Form["Restricting_age"].ToString() == "" ? 0 : Convert.ToInt32(Request.Form["Restrcting_age"]);
+            movie.Plot = Request.Form["Plot"];
             movie.ImdbRating = Request.Form["ImdbRating"];
             try
             {
@@ -35,14 +36,15 @@ namespace MoviesAPI.Pages.Movies
                 {
                     connection.Open();
                     String sql = "INSERT INTO movies " +
-                                 "(Title, Year, Genre, Restricting_age, ImdbRating) VALUES " +
-                                 "(@Title, @Year, @Genre, @Restricting_age, @ImdbRating);";
+                                 "(Title, Year, Genre, Restricting_age, Plot, ImdbRating) VALUES " +
+                                 "(@Title, @Year, @Genre, @Restricting_age, @Plot, @ImdbRating);";
                     using (SqlCommand command = new SqlCommand(sql, connection))
                     {
                         command.Parameters.AddWithValue("@Title", movie.Title);
                         command.Parameters.AddWithValue("@Year", movie.Year);
                         command.Parameters.AddWithValue("@Genre", movie.Genre);
                         command.Parameters.AddWithValue("@Restricting_age", movie.Restricting_age);
+                        command.Parameters.AddWithValue("@Plot", movie.Plot);
                         command.Parameters.AddWithValue("@ImdbRating", movie.ImdbRating);
                         command.ExecuteNonQuery();
                     }

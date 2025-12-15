@@ -92,3 +92,4 @@ C:\Users\ZAAL\source\repos\MoviesAPI\MoviesAPI\bin\Debug\net8.0\NHibernate.dll
 C:\Users\ZAAL\source\repos\MoviesAPI\MoviesAPI\bin\Debug\net8.0\Remotion.Linq.dll
 C:\Users\ZAAL\source\repos\MoviesAPI\MoviesAPI\bin\Debug\net8.0\Remotion.Linq.EagerFetching.dll
 C:\Users\ZAAL\source\repos\MoviesAPI\MoviesAPI\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\Users\ZAAL\source\repos\MoviesAPI\MoviesAPI\bin\Debug\net8.0\HtmlAgilityPack.dll

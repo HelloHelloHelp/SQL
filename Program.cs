@@ -1,4 +1,4 @@
-using System.Net.Http;
+using HtmlAgilityPack;
 using Microsoft.Data.SqlClient;
 using MoviesAPI.Models;
 using MoviesAPI.Repository;
@@ -15,7 +15,7 @@ byte[]? posterBytes = null;
 
 using (var httpClient = new HttpClient())
 {
-    var endpoint = new Uri("https://www.omdbapi.com/?apikey=3f124dfe&t=Mulan");
+    var endpoint = new Uri("https://www.omdbapi.com/?apikey=3f124dfe&t=Pluribus");
     var result = await httpClient.GetAsync(endpoint);
 
     if (!result.IsSuccessStatusCode)
@@ -50,8 +50,8 @@ using (SqlConnection conn = new SqlConnection(
     conn.Open();
 
     string query = @"
-       INSERT INTO LFM (Title, Year, Genre, Poster, PosterUrl, ImdbRating)
-        VALUES (@Title , @Year, @Genre, @Poster, @PosterUrl, @ImdbRating)";
+       INSERT INTO LFM (Title, Year, Genre, Poster, PosterUrl, Plot, ImdbRating)
+        VALUES (@Title , @Year, @Genre, @Poster, @PosterUrl, @Plot, @ImdbRating)";
 
     using (SqlCommand cmd = new SqlCommand(query, conn))
     {
@@ -60,6 +60,7 @@ using (SqlConnection conn = new SqlConnection(
         cmd.Parameters.AddWithValue("@Genre", movie.Genre ?? (object)DBNull.Value);
         cmd.Parameters.AddWithValue("@Poster", (object?)posterBytes ?? DBNull.Value);
         cmd.Parameters.AddWithValue("@PosterUrl", movie.PosterUrl ?? (object)DBNull.Value);
+        cmd.Parameters.AddWithValue("@Plot", movie.Plot ?? (object)DBNull.Value);
         cmd.Parameters.AddWithValue("@ImdbRating", movie.ImdbRating ?? (object)DBNull.Value);
 
         cmd.ExecuteNonQuery();
@@ -70,8 +71,8 @@ using (SqlConnection conn = new SqlConnection(
 
 using (var httpClient = new HttpClient())
 {
-    Random Titles =;
-    var endpoint = new Uri($"https://www.omdbapi.com/?apikey=3f124dfe&t={Titles}");
+    var endpoint = new Uri("https://www.omdbapi.com/?apikey=3f124dfe&t=Pluribus");
+
     var result = await httpClient.GetAsync(endpoint);
 
     if (!result.IsSuccessStatusCode)
@@ -106,9 +107,8 @@ using (SqlConnection conn = new SqlConnection(
     conn.Open();
 
     string query = @"
-    INSERT INTO LFS (Title, Year, Genre, TotalSeasons, Poster, PosterUrl, ImdbRating)
-    VALUES (@Title, @Year, @Genre, @TotalSeasons, @Poster, @PosterUrl, @ImdbRating)";
-
+       INSERT INTO LFS (Title, Year, Genre, TotalSeasons, Poster, PosterUrl, Plot, ImdbRating)
+        VALUES (@Title , @Year, @Genre, @TotalSeasons, @Poster, @PosterUrl, @Plot, @ImdbRating)";
 
     using (SqlCommand cmd = new SqlCommand(query, conn))
     {
@@ -118,14 +118,12 @@ using (SqlConnection conn = new SqlConnection(
         cmd.Parameters.AddWithValue("@TotalSeasons", serie.TotalSeasons ?? (object)DBNull.Value);
         cmd.Parameters.AddWithValue("@Poster", (object?)posterBytes ?? DBNull.Value);
         cmd.Parameters.AddWithValue("@PosterUrl", serie.PosterUrl ?? (object)DBNull.Value);
+        cmd.Parameters.AddWithValue("@Plot", serie.Plot ?? (object)DBNull.Value);
         cmd.Parameters.AddWithValue("@ImdbRating", serie.ImdbRating ?? (object)DBNull.Value);
 
         cmd.ExecuteNonQuery();
     }
 }
-
-
-
 
 
 // Add services

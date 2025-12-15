@@ -227,6 +227,10 @@
             "format": "int32",
             "nullable": true
           },
+          "plot": {
+            "type": "string",
+            "nullable": true
+          },
           "poster": {
             "type": "string",
             "format": "byte",
@@ -277,6 +281,10 @@
             "nullable": true
           },
           "totalSeasons": {
+            "type": "string",
+            "nullable": true
+          },
+          "plot": {
             "type": "string",
             "nullable": true
           },
@@ -333,6 +341,10 @@
             "type": "string",
             "nullable": true
           },
+          "plot": {
+            "type": "string",
+            "nullable": true
+          },
           "poster": {
             "type": "string",
             "format": "byte",
@@ -374,6 +386,10 @@
             "nullable": true
           },
           "watched": {
+            "type": "string",
+            "nullable": true
+          },
+          "plot": {
             "type": "string",
             "nullable": true
           },

@@ -15,6 +15,8 @@ namespace MoviesAPI.Models
         public string? Genre { get; set; }
         public int? Restricting_age { get; set; }
 
+        [JsonProperty("Plot")]
+        public string? Plot { get; set; }
 
         [JsonIgnore]
         public byte[]? Poster { get; set; }
@@ -35,12 +37,11 @@ namespace MoviesAPI.Models
                 ? $"data:image/jpeg;base64,{Convert.ToBase64String(Poster)}"
                 : null;
 
-
-
         public string? ImdbRating { get; set; }
-        public LFM(string? title, string? year, string? genre, int? restricting_age, byte[]? poster,string? posterurl, string? imdbRating)
+        public LFM(string? title, string? year, string? plot, string? genre, int? restricting_age, byte[]? poster,string? posterurl, string? imdbRating)
         {
             Title = title;
+            Plot = plot;
             Year = year;
             Genre = genre;
             Restricting_age = restricting_age;

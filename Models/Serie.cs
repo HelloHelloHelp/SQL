@@ -16,11 +16,13 @@ namespace MoviesAPI.Models
         public int? Restricting_age { get; set; }
         public string? TotalSeasons { get; set; }
         public string? Watched { get; set; }
+        public string ? Plot { get; set; }
         public byte[]? Poster { get; set; }
         public string? ImdbRating { get; set; }
-        public Serie(string? title, string? year, string? genre, string? watched, string? totalSeasons, int? restricting_age, byte[]? poster, string? imdbRating)
+        public Serie(string? title, string? plot, string? year, string? genre, string? watched, string? totalSeasons, int? restricting_age, byte[]? poster, string? imdbRating)
         {
             Title = title;
+            Plot = plot;
             Year = year;
             Genre = genre;
             Watched = watched;

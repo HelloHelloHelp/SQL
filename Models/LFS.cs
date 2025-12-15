@@ -14,7 +14,11 @@ namespace MoviesAPI.Models
         public string? Genre { get; set; }
         public int? Restricting_age { get; set; }
 
+        [JsonProperty("totalSeasons")]
         public string? TotalSeasons { get; set; }
+
+        [JsonProperty("Plot")]
+        public string? Plot { get; set; }
 
         [JsonIgnore]
         public byte[]? Poster { get; set; }
@@ -38,9 +42,10 @@ namespace MoviesAPI.Models
 
 
         public string? ImdbRating { get; set; }
-        public LFS(string? title, string? year, string? genre, int? restricting_age, string? totalSeasons, byte[]? poster, string? posterurl, string? imdbRating)
+        public LFS(string? title, string? year, string? plot, string? genre, int? restricting_age, string? totalSeasons, byte[]? poster, string? posterurl, string? imdbRating)
         {
             Title = title;
+            Plot = plot;
             Year = year;
             Genre = genre;
             Restricting_age = restricting_age;
