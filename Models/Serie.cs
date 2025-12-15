@@ -15,6 +15,7 @@ namespace ZAAL_SQL.Models
         public int? Restricting_age { get; set; }
         public string? TotalSeasons { get; set; }
 
+        public string? Plot { get; set; }
 
         [JsonIgnore]
         public byte[]? Poster { get; set; }
@@ -35,9 +36,10 @@ namespace ZAAL_SQL.Models
 
         public string? Watched { get; set; }
         public string? ImdbRating { get; set; }
-        public Serie(string? title, string? year, string? genre, int? restricting_age, string? totalSeasons, byte[]? poster, string? watched, string? imdbRating)
+        public Serie(string? title, string? plot, string? year, string? genre, int? restricting_age, string? totalSeasons, byte[]? poster, string? watched, string? imdbRating)
         {
             Title = title;
+            Plot = plot;
             Year = year;
             Genre = genre;
             Restricting_age = restricting_age;

@@ -15,6 +15,7 @@ namespace ZAAL_SQL.Models
 
         public string? Year { get; set; }
 
+        public string? Plot { get; set; }
         public string? Genre { get; set; }
         public int? Restricting_age { get; set; }
 
@@ -38,9 +39,10 @@ namespace ZAAL_SQL.Models
 
 
         public string? ImdbRating { get; set; }
-        public MovieModel(string? title, string? year, string? genre, int? restricting_age, byte[]? poster, string? imdbRating)
+        public MovieModel(string? title, string? plot, string? year, string? genre, int? restricting_age, byte[]? poster, string? imdbRating)
         {
             Title = title;
+            Plot = plot;
             Year = year;
             Genre = genre;
             Restricting_age = restricting_age;

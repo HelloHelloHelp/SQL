@@ -36,7 +36,7 @@
                 Genre
             </th>
             <th>
-                Restricting age
+               Plot
             </th>
             <th>
                 Seasons
@@ -64,7 +64,7 @@
                     @Html.DisplayFor(modelItem => item.Genre)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Restricting_age)
+                    @Html.DisplayFor(modelItem => item.Plot)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.TotalSeasons)
@@ -82,7 +82,7 @@
                 </td>
 
                 <td>
-                    <p>/10</p>
+                    <p>@Html.DisplayFor(modelItem => item.ImdbRating)/10</p>
                 </td>
                 <td>
                     <form method="post" asp-page-handler="Add">

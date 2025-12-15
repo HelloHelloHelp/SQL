@@ -39,6 +39,12 @@
             </div>
             <br>
             <div class="form-group">
+                <p>Seasons</p>
+                <input asp-for="Serie.Plot" class="form-control" />
+                <span asp-validation-for="Serie.Plot" class="text-danger"></span>
+            </div>
+            <br>
+            <div class="form-group">
                 <p>Rating</p>
                 <input asp-for="Serie.ImdbRating" class="form-control" />
                 <span asp-validation-for="Serie.ImdbRating" class="text-danger"></span>

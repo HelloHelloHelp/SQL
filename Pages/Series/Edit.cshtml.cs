@@ -63,9 +63,8 @@ namespace ZAAL_SQL.Pages.Series
             Serie.Title = title;
             Serie.Year = omdb.Year;
             Serie.Genre = omdb.Genre;
+            Serie.Plot = omdb.Plot;
             Serie.TotalSeasons = omdb.TotalSeasons;
-            Serie.ImdbRating = omdb.ImdbRating;
-
             _context.Attach(Serie).State = EntityState.Modified;
 
             try
