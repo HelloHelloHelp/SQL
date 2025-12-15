@@ -26,6 +26,8 @@
             else
             {
                 <div>No poster</div>
+                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a>
+                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
             }
 
             <form method="post" asp-page-handler="SetWatched">

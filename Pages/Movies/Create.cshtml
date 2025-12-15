@@ -17,31 +17,7 @@
                 <input asp-for="movie.Title" class="form-control" />
                 <span asp-validation-for="movie.Title" class="text-danger"></span>
             </div>
-            <br>
-            <div class="form-group">
-                <p>Release date</p>
-                <input asp-for="movie.Year" class="form-control" />
-                <span asp-validation-for="movie.Year" class="text-danger"></span>
-            </div>
-            <br>
-            <div class="form-group">
-                <p>Genre</p>
-                <input asp-for="movie.Genre" class="form-control" />
-                <span asp-validation-for="movie.Genre" class="text-danger"></span>
-            </div>
-            <br>
-            <div class="form-group">
-                <p>Restricting age</p>
-                <input asp-for="movie.Plot" class="form-control" />
-                <span asp-validation-for="movie.Plot" class="text-danger"></span>
-            </div>
-            <br>
-            <div class="form-group">
-            <label asp-for="movie.ImdbRating" class="control-label"></label>
-                <input asp-for="movie.ImdbRating" class="form-control"/>
-                <span asp-validation-for="movie.ImdbRating" class="text-danger"></span>
-		</div>
-            
+           
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>

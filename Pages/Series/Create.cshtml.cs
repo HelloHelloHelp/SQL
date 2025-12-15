@@ -60,6 +60,7 @@ namespace ZAAL_SQL.Pages.Series
             Serie.PosterUrl = omdb.OmdbPosterUrl;
             Serie.Genre = omdb.Genre;
             Serie.Year = omdb.Year;
+            Serie.Plot = omdb.Plot;
             Serie.TotalSeasons = omdb.TotalSeasons;
 
 

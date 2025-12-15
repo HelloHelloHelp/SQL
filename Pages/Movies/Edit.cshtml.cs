@@ -62,6 +62,7 @@ namespace ZAAL_SQL.Pages.Movies
             movie.PosterUrl = omdb.OmdbPosterUrl;
             movie.Genre = omdb.Genre;
             movie.Year = omdb.Year;
+            movie.Plot = omdb.Plot;
             _context.Attach(movie).State = EntityState.Modified;
 
             try

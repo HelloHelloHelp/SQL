@@ -41,6 +41,7 @@ namespace ZAAL_SQL.Pages.LFMAS.LFS
                     Restricting_age = Serie?.Restricting_age,
                     TotalSeasons = Serie?.TotalSeasons,
                     ImdbRating = Serie?.ImdbRating,
+                    Plot = Serie?.Plot,
                     Poster = Serie?.Poster,
                 };
 
