@@ -40,8 +40,12 @@ namespace MoviesAPI.Repository
                             Models.LFM Mrecommend = new Models.LFM();
                             Mrecommend.ID = (int)reader["ID"];
                             Mrecommend.Title = reader["Title"].ToString();
+                            Mrecommend.ImdbID = reader["ImdbID"].ToString();
+                            Mrecommend.Director = reader["Director"].ToString();
                             Mrecommend.Year = reader["Year"].ToString();
                             Mrecommend.Genre = reader["Genre"].ToString();
+                            Mrecommend.Rated = reader["Rated"].ToString();
+                            Mrecommend.Language = reader["Language"].ToString();
                             Mrecommend.Plot = reader["Plot"].ToString();
                             Mrecommend.Runtime = reader["Runtime"].ToString();
                             if (!reader.IsDBNull(reader.GetOrdinal("Poster")))

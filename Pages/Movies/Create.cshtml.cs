@@ -35,13 +35,17 @@ namespace MoviesAPI.Pages.Movies
                 {
                     connection.Open();
                     String sql = "INSERT INTO movies " +
-                                 "(Title, Year, Genre, Plot, ImdbRating) VALUES " +
-                                 "(@Title, @Year, @Genre, @Plot, @ImdbRating);";
+                                 "(Title, ImdbID, Director, Year, Genre, Rated, Language Plot, ImdbRating) VALUES " +
+                                 "(@Title, @ImdbID, @Director, @Year, @Genre, @Rated, @Language, @Plot, @ImdbRating);";
                     using (SqlCommand command = new SqlCommand(sql, connection))
                     {
                         command.Parameters.AddWithValue("@Title", movie.Title);
+                        command.Parameters.AddWithValue("@ImdbID", movie.ImdbID);
+                        command.Parameters.AddWithValue("@Director", movie.Director);
                         command.Parameters.AddWithValue("@Year", movie.Year);
                         command.Parameters.AddWithValue("@Genre", movie.Genre);
+                        command.Parameters.AddWithValue("@Rated", movie.Rated);
+                        command.Parameters.AddWithValue("@Language", movie.Language);
                         command.Parameters.AddWithValue("@Plot", movie.Plot);
                         command.Parameters.AddWithValue("@ImdbRating", movie.ImdbRating);
                         command.ExecuteNonQuery();

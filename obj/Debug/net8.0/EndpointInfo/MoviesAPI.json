@@ -222,6 +222,22 @@
             "type": "string",
             "nullable": true
           },
+          "rated": {
+            "type": "string",
+            "nullable": true
+          },
+          "director": {
+            "type": "string",
+            "nullable": true
+          },
+          "imdbID": {
+            "type": "string",
+            "nullable": true
+          },
+          "language": {
+            "type": "string",
+            "nullable": true
+          },
           "runtime": {
             "type": "string",
             "nullable": true
@@ -271,6 +287,22 @@
             "nullable": true
           },
           "genre": {
+            "type": "string",
+            "nullable": true
+          },
+          "rated": {
+            "type": "string",
+            "nullable": true
+          },
+          "language": {
+            "type": "string",
+            "nullable": true
+          },
+          "director": {
+            "type": "string",
+            "nullable": true
+          },
+          "imdbID": {
             "type": "string",
             "nullable": true
           },
@@ -326,6 +358,22 @@
             "type": "string",
             "nullable": true
           },
+          "rated": {
+            "type": "string",
+            "nullable": true
+          },
+          "director": {
+            "type": "string",
+            "nullable": true
+          },
+          "imdbID": {
+            "type": "string",
+            "nullable": true
+          },
+          "language": {
+            "type": "string",
+            "nullable": true
+          },
           "runtime": {
             "type": "string",
             "nullable": true
@@ -369,6 +417,14 @@
             "type": "string",
             "nullable": true
           },
+          "rated": {
+            "type": "string",
+            "nullable": true
+          },
+          "language": {
+            "type": "string",
+            "nullable": true
+          },
           "genre": {
             "type": "string",
             "nullable": true
@@ -378,6 +434,14 @@
             "nullable": true
           },
           "watched": {
+            "type": "string",
+            "nullable": true
+          },
+          "director": {
+            "type": "string",
+            "nullable": true
+          },
+          "imdbID": {
             "type": "string",
             "nullable": true
           },

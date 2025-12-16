@@ -37,15 +37,19 @@ namespace MoviesAPI.Pages.Series
                 {
                     connection.Open();
                     String sql = "INSERT INTO series " +
-                                 "(Title, Year, Genre, TotalSeasons, Plot, Runtime, ImdbRating) VALUES " +
-                                 "(@Title, @Year, @Genre, @TotalSeasons, @Plot, @Runtime, @ImdbRating);";
+                                 "(Title, ImdbID, Director, Year, Genre, TotalSeasons, Plot, Rated, Language, Runtime, ImdbRating) VALUES " +
+                                 "(@Title, @ImdbID, @Director, @Year, @Genre, @TotalSeasons, @Plot, @Rated, @Language, @Runtime, @ImdbRating);";
                     using (SqlCommand command = new SqlCommand(sql, connection))
                     {
                         command.Parameters.AddWithValue("@Title", serie.Title);
+                        command.Parameters.AddWithValue("@ImdbID", serie.ImdbID);
+                        command.Parameters.AddWithValue("@Director", serie.Director);
                         command.Parameters.AddWithValue("@Year", serie.Year);
                         command.Parameters.AddWithValue("@Genre", serie.Genre);
                         command.Parameters.AddWithValue("@Plot", serie.Plot);
                         command.Parameters.AddWithValue("@TotalSeasons", serie.TotalSeasons);
+                        command.Parameters.AddWithValue("@Rated", serie.Rated);
+                        command.Parameters.AddWithValue("@Language", serie.Language);
                         command.Parameters.AddWithValue("@Runtime", serie.Runtime);
                         command.Parameters.AddWithValue("@ImdbRating", serie.ImdbRating);
                         command.ExecuteNonQuery();

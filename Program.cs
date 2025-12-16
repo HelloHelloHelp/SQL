@@ -9,8 +9,9 @@ using static System.Net.WebRequestMethods;
 
 var builder = WebApplication.CreateBuilder(args);
 
-LFM movie = null;
 LFS serie = null;
+LFM movie = null;
+
 byte[]? posterBytes = null; 
 
 using (var httpClient = new HttpClient())
@@ -50,17 +51,21 @@ using (SqlConnection conn = new SqlConnection(
     conn.Open();
 
     string query = @"
-       INSERT INTO LFM (Title, Year, Genre, Poster, PosterUrl, Plot, Runtime, ImdbRating)
-        VALUES (@Title , @Year, @Genre, @Poster, @PosterUrl, @Plot, @Runtime, @ImdbRating)";
+       INSERT INTO LFM (Title, ImdbID, Director, Year, Genre, Poster, PosterUrl, Plot, Rated, Language, Runtime, ImdbRating)
+        VALUES (@Title ,  @Imdb, @Director, @Year, @Genre, @Poster, @PosterUrl, @Plot,@Rated, @Language, @Runtime, @ImdbRating)";
 
     using (SqlCommand cmd = new SqlCommand(query, conn))
     {
         cmd.Parameters.AddWithValue("@Title", movie.Title ?? (object)DBNull.Value);
+        cmd.Parameters.AddWithValue("@Imdb", movie.ImdbID ?? (object)DBNull.Value);
+        cmd.Parameters.AddWithValue("@Director", movie.Director ?? (object)DBNull.Value);
         cmd.Parameters.AddWithValue("@Year", movie.Year ?? (object)DBNull.Value);
         cmd.Parameters.AddWithValue("@Genre", movie.Genre ?? (object)DBNull.Value);
         cmd.Parameters.AddWithValue("@Poster", (object?)posterBytes ?? DBNull.Value);
         cmd.Parameters.AddWithValue("@PosterUrl", movie.PosterUrl ?? (object)DBNull.Value);
         cmd.Parameters.AddWithValue("@Plot", movie.Plot ?? (object)DBNull.Value);
+        cmd.Parameters.AddWithValue("@Rated", movie.Rated ?? (object)DBNull.Value);
+        cmd.Parameters.AddWithValue("@Language", movie.Language ?? (object)DBNull.Value);
         cmd.Parameters.AddWithValue("@Runtime", movie.Runtime ?? (object)DBNull.Value);
         cmd.Parameters.AddWithValue("@ImdbRating", movie.ImdbRating ?? (object)DBNull.Value);
 
@@ -108,18 +113,22 @@ using (SqlConnection conn = new SqlConnection(
     conn.Open();
 
     string query = @"
-       INSERT INTO LFS (Title, Year, Genre, TotalSeasons, Poster, PosterUrl, Plot, Runtime, ImdbRating)
-        VALUES (@Title , @Year, @Genre, @TotalSeasons, @Poster, @PosterUrl, @Plot, @Runtime, @ImdbRating)";
+       INSERT INTO LFS (Title, ImdbID, Director, Year, Genre, TotalSeasons, Poster, PosterUrl, Plot, Rated, Language, Runtime, ImdbRating)
+        VALUES (@Title , @ImdbID, @Director, @Year, @Genre, @TotalSeasons, @Poster, @PosterUrl, @Plot, @Rated, @Language, @Runtime, @ImdbRating)";
 
     using (SqlCommand cmd = new SqlCommand(query, conn))
     {
         cmd.Parameters.AddWithValue("@Title", serie.Title ?? (object)DBNull.Value);
+        cmd.Parameters.AddWithValue("@ImdbID", serie.ImdbID ?? (object)DBNull.Value);
+        cmd.Parameters.AddWithValue("@Director", serie.Director ?? (object)DBNull.Value);
         cmd.Parameters.AddWithValue("@Year", serie.Year ?? (object)DBNull.Value);
         cmd.Parameters.AddWithValue("@Genre", serie.Genre ?? (object)DBNull.Value);
         cmd.Parameters.AddWithValue("@TotalSeasons", serie.TotalSeasons ?? (object)DBNull.Value);
         cmd.Parameters.AddWithValue("@Poster", (object?)posterBytes ?? DBNull.Value);
         cmd.Parameters.AddWithValue("@PosterUrl", serie.PosterUrl ?? (object)DBNull.Value);
         cmd.Parameters.AddWithValue("@Plot", serie.Plot ?? (object)DBNull.Value);
+        cmd.Parameters.AddWithValue("@Rated", serie.Rated ?? (object)DBNull.Value);
+        cmd.Parameters.AddWithValue("@Language", serie.Language ?? (object)DBNull.Value);
         cmd.Parameters.AddWithValue("@Runtime", serie.Runtime ?? (object)DBNull.Value);
         cmd.Parameters.AddWithValue("@ImdbRating", serie.ImdbRating ?? (object)DBNull.Value);
 

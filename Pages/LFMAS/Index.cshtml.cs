@@ -28,9 +28,13 @@ namespace MoviesAPI.Pages.LFMAS
                             {
                                 MoviesAPI.Models.LFM movie = new MoviesAPI.Models.LFM();
                                 movie.ID = (int)reader["ID"];
+                                movie.ImdbID = reader["ImdbID"].ToString();
+                                movie.Director = reader["Director"].ToString();
                                 movie.Title = reader["Title"].ToString();
                                 movie.Year = reader["Year"].ToString();
                                 movie.Genre = reader["Genre"].ToString();
+                                movie.Rated = reader["Rated"].ToString();
+                                movie.Language = reader["Language"].ToString();
                                 movie.Plot = reader.IsDBNull("Plot") ? null : reader.GetString("Plot");
                                 movie.Runtime = reader["Runtime"].ToString();
                                 movie.ImdbRating = reader["ImdbRating"].ToString();
@@ -68,10 +72,14 @@ namespace MoviesAPI.Pages.LFMAS
                             {
                                 MoviesAPI.Models.LFS serie = new MoviesAPI.Models.LFS();
                                 serie.ID = (int)reader["ID"];
+                                serie.ImdbID = reader["ImdbID"].ToString();
+                                serie.Director = reader["Director"].ToString();
                                 serie.Title = reader["Title"].ToString();
                                 serie.Year = reader["Year"].ToString();
                                 serie.Genre = reader["Genre"].ToString();
                                 serie.TotalSeasons = reader["TotalSeasons"].ToString();
+                                serie.Rated = reader["Rated"].ToString();
+                                serie.Language = reader["Language"].ToString();
                                 serie.Plot = reader.IsDBNull("Plot") ? null : reader.GetString("Plot");
                                 serie.Runtime = reader["runtime"].ToString();
                                 serie.Poster = reader["Poster"] == DBNull.Value ? null : (byte[])reader["Poster"];

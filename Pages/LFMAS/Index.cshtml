@@ -7,13 +7,18 @@
 	<thead>
 		<tr>
 			<th>ID</th>
+			<th>Imdb ID</th>
+			<th>Director</th>
 			<th>Title</th>
 			<th>Year</th>
 			<th>Genre</th>
+			<th>Rated</th>
+			<th>Language</th>
 			<th>Plot</th>
 			<th>Duration</th>
 			<th>Poster</th>
 			<th>imdbRating</th>
+		
 		</tr>
 	</thead>
 	<tbody>
@@ -22,9 +27,13 @@
 		{
 			<tr>
 				<td>@movie.ID</td>
+				<td>@movie.ImdbID</td>
+				<td>@movie.Director</td>
 				<td>@movie.Title</td>
 				<td>@movie.Year</td>
 				<td>@movie.Genre</td>
+				<td>@movie.Rated</td>
+				<td>@movie.Language</td>
 				<td>@movie.Plot</td>
 				<td>@movie.Runtime</td>
 				<td>
@@ -51,6 +60,8 @@
 			<th>Date</th>
 			<th>Genre</th>
 			<th>Seasons</th>
+			<th>Rated</th>
+			<th>Language</th>
 			<th>Poster</th>
 			<th>Plot</th>
 			<th>Duration</th>
@@ -65,6 +76,8 @@
 				<td>@serie.Year</td>
 				<td>@serie.Genre</td>
 				<th>@serie.TotalSeasons</th>
+				<th>@serie.Rated</th>
+				<th>@serie.Language</th>
 				<td>
 					@if (serie.Poster != null)
 					{

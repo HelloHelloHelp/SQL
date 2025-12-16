@@ -28,9 +28,13 @@ namespace MoviesAPI.Repository
                             Models.Movie movie = new Models.Movie();
                             movie.ID = (int)reader["ID"];
                             movie.Title = reader["Title "].ToString();
+                            movie.ImdbID = reader["ImdbID"].ToString();
+                            movie.Director = reader["Director"].ToString();
                             movie.Year = reader["Year"].ToString();
                             movie.Genre = reader["Genre"].ToString();
                             movie.Plot = reader["Plot"].ToString();
+                            movie.Rated = reader["Rated"].ToString();
+                            movie.Language = reader["Language"].ToString();
                             movie.Runtime = reader["Runtime"].ToString();
                             if (!reader.IsDBNull(reader.GetOrdinal("Poster")))
                             {

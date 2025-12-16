@@ -12,6 +12,11 @@ namespace MoviesAPI.Models
         public string? Title { get; set; }
         public string? Year { get; set; }
         public string? Genre { get; set; }
+        public string? Rated { get; set; }
+        public string? Language { get; set; }
+
+        public string? Director { get; set; }
+        public string? ImdbID { get; set; }
 
         [JsonProperty("Runtime")]
         public string? Runtime { get; set; }
@@ -44,7 +49,7 @@ namespace MoviesAPI.Models
 
 
         public string? ImdbRating { get; set; }
-        public LFS(string? title, string? year, string? runtime, string? plot, string? genre, string? totalSeasons, byte[]? poster, string? posterurl, string? imdbRating)
+        public LFS(string? director, string? imdbID, string? rated, string? language, string? title, string? year, string? runtime, string? plot, string? genre, string? totalSeasons, byte[]? poster, string? posterurl, string? imdbRating)
         {
             Title = title;
             Plot = plot;
@@ -55,6 +60,10 @@ namespace MoviesAPI.Models
             ImdbRating = imdbRating;    
             TotalSeasons = totalSeasons;
             Runtime = runtime;
+            Rated = rated;
+            Language = language;
+            Director = director;
+            ImdbID = imdbID;
         }
     }
 }

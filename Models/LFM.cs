@@ -13,6 +13,11 @@ namespace MoviesAPI.Models
         public string? Title { get; set; }
         public string? Year { get; set; }
         public string? Genre { get; set; }
+        public string? Rated { get; set; }
+
+        public string? Director { get; set; }
+        public string? ImdbID { get; set; }
+        public string? Language { get; set; }
 
         [JsonProperty("Runtime")]
         public string? Runtime { get; set; }
@@ -40,7 +45,7 @@ namespace MoviesAPI.Models
                 : null;
 
         public string? ImdbRating { get; set; }
-        public LFM(string? title, string? year, string? plot, string? runtime, string? genre, byte[]? poster, string? posterurl, string? imdbRating)
+        public LFM(string? director, string? imdbID, string? rated, string? language, string? title, string? year, string? plot, string? runtime, string? genre, byte[]? poster, string? posterurl, string? imdbRating)
         {
             Title = title;
             Plot = plot;
@@ -50,6 +55,10 @@ namespace MoviesAPI.Models
             PosterUrl = posterurl;
             ImdbRating = imdbRating;
             Runtime = runtime;
+            Rated = rated;
+            Language = language;
+            Director = director;
+            ImdbID = imdbID;
         }
     }
 }

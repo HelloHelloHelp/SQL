@@ -39,8 +39,12 @@ namespace MoviesAPI.Pages.Movies
                             {
                                 movie.ID =  reader.GetInt32("ID");
                                 movie.Title = reader.GetString("Title");
+                                movie.ImdbID = reader.GetString("ImdbID");
+                                movie.Director = reader.GetString("Director");
                                 movie.Year = reader.GetString("Year");
                                 movie.Genre = reader.GetString("Genre");
+                                movie.Rated = reader.GetString("Rated");
+                                movie.Language = reader.GetString("Language");
                                 movie.Plot = reader.GetString("Plot");
                                 movie.Runtime = reader.GetString("Runtime");
                                 movie.ImdbRating = reader.GetString("ImdbRating");
@@ -57,8 +61,12 @@ namespace MoviesAPI.Pages.Movies
         public async Task OnPost()
         {
             movie.Title = Request.Form["Title"];
+            movie.ImdbID = Request.Form["ImdbID"];
+            movie.Director = Request.Form["Director"];
             movie.Year = Request.Form["Year"];
             movie.Genre = Request.Form["Genre"];
+            movie.Rated = Request.Form["Rated"];
+            movie.Language = Request.Form["Language"];
             movie.Plot = Request.Form["Plot"];
             movie.ImdbRating = Request.Form["ImdbRating"];
 
@@ -68,14 +76,17 @@ namespace MoviesAPI.Pages.Movies
                 {
                     connection.Open();
                     String sql = "UPDATE movies " +
-                                 "SET Title=@Title, Year=@Year, Genre=@Genre, Plot=@Plot, Runtime=@Runtime, ImdbRating=@ImdbRating " +
+                                 "SET Title=@Title, ImdbID=@ImdbID, Director=@Director, Year=@Year, Genre=@Genre, Plot=@Plot, Rated=@Rated, Language=@Language, Runtime=@Runtime, ImdbRating=@ImdbRating " +
                                  "WHERE ID=@ID;";
                     using (SqlCommand command = new SqlCommand(sql, connection))
                     {
                         command.Parameters.AddWithValue("@Title", movie.Title);
+                        command.Parameters.AddWithValue("@ImdbID", movie.ImdbID);
+                        command.Parameters.AddWithValue("@Director", movie.Director);
                         command.Parameters.AddWithValue("@Year", movie.Year);
                         command.Parameters.AddWithValue("@Genre", movie.Genre);
-                        command.Parameters.AddWithValue("@Plot", movie.Plot ?? (object)DBNull.Value);
+                        command.Parameters.AddWithValue("@Rated", movie.Rated);
+                        command.Parameters.AddWithValue("@Plot", movie.Plot);
                         command.Parameters.AddWithValue("@Runtime", movie.Runtime);
                         command.Parameters.AddWithValue("@Watched", movie.Watched);
                         command.Parameters.AddWithValue("@ID", movie.ID);

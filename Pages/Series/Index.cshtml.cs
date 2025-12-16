@@ -35,10 +35,14 @@ namespace MoviesAPI.Pages.Series
                                 Models.Serie serie = new Models.Serie();
                                 serie.ID = (int)reader["ID"];
                                 serie.Title = reader["Titel"].ToString();
+                                serie.ImdbID = reader["ImdbID"].ToString();
+                                serie.Director = reader["Director"].ToString();
                                 serie.Year = reader["Date"].ToString();
                                 serie.Genre = reader["Genre"].ToString();
                                 serie.Plot = reader["Plot"].ToString();
                                 serie.TotalSeasons = reader["TotalSeasons"].ToString();
+                                serie.Rated = reader["Rated"].ToString();
+                                serie.Language = reader["Language"].ToString();
                                 serie.Runtime = reader["Runtime"].ToString();
                                 serie.Poster = reader["Poster"] == DBNull.Value ? null : (byte[])reader["Poster"];
                                 serie.Watched = reader["Watched"].ToString();

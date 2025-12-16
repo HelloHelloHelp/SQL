@@ -29,9 +29,13 @@ namespace MoviesAPI.Repository
                             Models.Serie serie = new Models.Serie();
                             serie.ID = (int)reader["ID"];
                             serie.Title = reader["Title"].ToString();
+                            serie.ImdbID = reader["ImdbID"].ToString();
+                            serie.Director = reader["Director"].ToString();
                             serie.Year = reader["Year"].ToString();
                             serie.Genre = reader["Genre"].ToString();
                             serie.TotalSeasons = reader["TotalSeasons"].ToString();
+                            serie.Rated = reader["Rated"].ToString();
+                            serie.Language = reader["Language"].ToString();
                             serie.Runtime = reader["Runtime"].ToString();
                             serie.Plot = reader["Plot"].ToString();
                             serie.Poster = reader["Poster"] == DBNull.Value ? null : (byte[])reader["Poster"];
