@@ -37,12 +37,16 @@ namespace ZAAL_SQL.Pages.LFMAS.LFM
                 TempData["Message"] = "added to your movie list!";
                 var newMovie = new Movie
                 {
-                    Title = movie?.Title,  
+                    Title = movie?.Title,
+                    ImdbID = movie?.ImdbID,
+                    Director = movie?.Director,
                     Year = movie?.Year,
                     Genre = movie?.Genre,
-                    Restricting_age = movie?.Restricting_age,
                     ImdbRating = movie?.ImdbRating,
                     Plot = movie?.Plot,
+                    Rated = movie?.Rated,
+                    Language = movie?.Language,
+                    Runtime = movie?.Runtime,
                     Poster = movie?.Poster
                 };
                 

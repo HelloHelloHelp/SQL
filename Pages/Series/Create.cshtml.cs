@@ -57,14 +57,18 @@ namespace ZAAL_SQL.Pages.Series
 
             
             Serie.Poster = posterBytes;
+            Serie.Language = omdb.Language;
             Serie.PosterUrl = omdb.OmdbPosterUrl;
             Serie.Genre = omdb.Genre;
             Serie.Year = omdb.Year;
             Serie.Plot = omdb.Plot;
+            Serie.Runtime = omdb.Runtime;
+            Serie.Director = omdb.Director;
+            Serie.ImdbID = omdb.ImdbID;
             Serie.TotalSeasons = omdb.TotalSeasons;
+            Serie.ImdbRating = omdb.ImdbRating;
+            Serie.Rated = omdb.Rated;
 
-
-            
             _context.Serie.Add(Serie);
             await _context.SaveChangesAsync();
 

@@ -15,8 +15,14 @@ namespace ZAAL_SQL.Models
 
         public string? Plot { get; set; }
         public string? Genre { get; set; }
-        public int? Restricting_age { get; set; }
         public string? TotalSeasons { get; set; }
+        public string? Director { get; set; }
+        public string? ImdbID { get; set; }
+        public string? Rated { get; set; }
+        public string? Language { get; set; }
+
+        [JsonProperty("Runtime")]
+        public string? Runtime { get; set; }
 
         [JsonIgnore]
         public byte[]? Poster { get; set; }
@@ -36,16 +42,20 @@ namespace ZAAL_SQL.Models
                 : null;
 
         public string? ImdbRating { get; set; }
-        public SerieModel(string? title, string? plot, string? year, string? genre, int? restricting_age, string? totalSeasons, byte[]? poster, string? imdbRating)
+        public SerieModel(string? director, string? imdbID, string? rated, string? language, string? title, string runtime, string? plot, string? year, string? genre, string? totalSeasons, byte[]? poster, string? imdbRating)
         {
             Title = title;
             Plot = plot;
             Year = year;
             Genre = genre;
-            Restricting_age = restricting_age;
             TotalSeasons = totalSeasons;
             Poster = poster;
             ImdbRating = imdbRating;
+            Runtime = runtime;
+            Rated = rated;
+            Language = language;
+            Director = director;
+            ImdbID = imdbID;
         }
     }
 }

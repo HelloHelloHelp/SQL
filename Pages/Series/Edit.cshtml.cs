@@ -59,11 +59,16 @@ namespace ZAAL_SQL.Pages.Series
             }
 
             Serie.Poster = posterBytes;
+            Serie.Rated = omdb.Rated;
             Serie.PosterUrl = omdb.OmdbPosterUrl;
+            Serie.Language = omdb.Language;
             Serie.Title = title;
             Serie.Year = omdb.Year;
             Serie.Genre = omdb.Genre;
             Serie.Plot = omdb.Plot;
+            Serie.ImdbID = omdb.ImdbID;
+            Serie.Director = omdb.Director;
+            Serie.Runtime = omdb.Runtime;
             Serie.TotalSeasons = omdb.TotalSeasons;
             _context.Attach(Serie).State = EntityState.Modified;
 

@@ -17,11 +17,11 @@
         
             @if (item.Poster != null)
             {
-                <a href="/Series/Details?id=@item.ID">
+                <a href="/Movies/Details?id=@item.ID">
                     <img src="data:image/jpeg;base64,@Convert.ToBase64String(item.Poster)"
-                         class="img-fluid mb-2"
-                         style="max-width:120px;" />
+                         style="width:120px; height:180px; object-fit:cover;" />
                 </a>
+
             }
             else
             {

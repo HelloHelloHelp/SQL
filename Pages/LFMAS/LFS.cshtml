@@ -27,6 +27,12 @@
     <thead>
         <tr>
             <th>
+                Imdb ID
+            </th>
+            <th>
+               Director
+            </th>
+            <th>
                 Title
             </th>
             <th>
@@ -39,7 +45,16 @@
                Plot
             </th>
             <th>
+                Rated
+            </th>
+            <th>
+                Language
+            </th>
+            <th>
                 Seasons
+            </th>
+            <th>
+                Duration
             </th>
             <th>
                 Poster
@@ -53,7 +68,12 @@
         @foreach (var item in Model.Series)
         {
             <tr>
-
+                <td>
+                    @Html.DisplayFor(modelItem => item.ImdbID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Director)
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Title)
                 </td>
@@ -67,7 +87,16 @@
                     @Html.DisplayFor(modelItem => item.Plot)
                 </td>
                 <td>
+                    @Html.DisplayFor(modelItem => item.Rated)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Language)
+                </td>
+                <td>
                     @Html.DisplayFor(modelItem => item.TotalSeasons)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Runtime)
                 </td>
                 <td>
                     @if (item.Poster != null)

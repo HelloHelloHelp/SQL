@@ -12,6 +12,18 @@
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
+            <p>Imdb ID</p>
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Movie.ImdbID)
+        </dd>
+        <dt class="col-sm-2">
+            <p>Director</p>
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Movie.Director)
+        </dd>
+        <dt class="col-sm-2">
             <p>Title</p>
         </dt>
         <dd class="col-sm-10">
@@ -30,11 +42,28 @@
             @Html.DisplayFor(model => model.Movie.Genre)
         </dd>
         <dt class="col-sm-2">
-            <p>Restricting age</p>
+            <p>Plot</p>
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Movie.Plot)
         </dd>
+        <dt class="col-sm-2">
+            <p>Rated</p>
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Movie.Rated)
+        </dd>
+        <dt class="col-sm-2">
+            <p>Language</p>
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Movie.Language)
+        </dd>
+        <dt class="col-sm-2">
+            <p> Duration</p>
+		</dt>
+        <dd class="col-sm-10">
+			@Html.DisplayFor(model => model.Movie.Runtime)
         <dt class="col-sm-2">
             <p>Rating</p>
         </dt>

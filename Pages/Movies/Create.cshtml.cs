@@ -61,8 +61,12 @@ namespace ZAAL_SQL.Pages.Movies
             movie.Genre = omdb.Genre;
             movie.Year = omdb.Year;
             movie.Plot = omdb.Plot;
-            movie.Title = title;
-
+            movie.Director = omdb.Director;
+            movie.ImdbID = omdb.ImdbID;
+            movie.Runtime = omdb.Runtime;
+            movie.Language = omdb.Language;
+            movie.Rated = omdb.Rated;
+            movie.ImdbRating = omdb.ImdbRating;
             _context.Movie.Add(movie);
             await _context.SaveChangesAsync();
 

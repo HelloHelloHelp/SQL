@@ -36,12 +36,16 @@ namespace ZAAL_SQL.Pages.LFMAS.LFS
                 var newSerie = new Serie
                 {
                     Title = Serie?.Title,
+                    ImdbID = Serie?.ImdbID,
+                    Director = Serie?.Director,
                     Year = Serie?.Year,
                     Genre = Serie?.Genre,
-                    Restricting_age = Serie?.Restricting_age,
                     TotalSeasons = Serie?.TotalSeasons,
                     ImdbRating = Serie?.ImdbRating,
                     Plot = Serie?.Plot,
+                    Rated = Serie?.Rated,
+                    Language = Serie?.Language,
+                    Runtime = Serie?.Runtime,
                     Poster = Serie?.Poster,
                 };
 

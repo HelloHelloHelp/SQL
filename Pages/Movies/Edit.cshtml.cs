@@ -60,9 +60,14 @@ namespace ZAAL_SQL.Pages.Movies
 
             movie.Poster = posterBytes;
             movie.PosterUrl = omdb.OmdbPosterUrl;
+            movie.Director = omdb.Director;
+            movie.ImdbID = omdb.ImdbID;
             movie.Genre = omdb.Genre;
             movie.Year = omdb.Year;
             movie.Plot = omdb.Plot;
+            movie.Rated = omdb.Rated;
+            movie.Language = omdb.Language;
+            movie.Runtime = omdb.Runtime;
             _context.Attach(movie).State = EntityState.Modified;
 
             try
