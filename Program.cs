@@ -15,7 +15,7 @@ byte[]? posterBytes = null;
 
 using (var httpClient = new HttpClient())
 {
-    var endpoint = new Uri("https://www.omdbapi.com/?apikey=3f124dfe&t=Pluribus");
+    var endpoint = new Uri("https://www.omdbapi.com/?apikey=3f124dfe&t=Mulan");
     var result = await httpClient.GetAsync(endpoint);
 
     if (!result.IsSuccessStatusCode)
@@ -50,8 +50,8 @@ using (SqlConnection conn = new SqlConnection(
     conn.Open();
 
     string query = @"
-       INSERT INTO LFM (Title, Year, Genre, Poster, PosterUrl, Plot, ImdbRating)
-        VALUES (@Title , @Year, @Genre, @Poster, @PosterUrl, @Plot, @ImdbRating)";
+       INSERT INTO LFM (Title, Year, Genre, Poster, PosterUrl, Plot, Runtime, ImdbRating)
+        VALUES (@Title , @Year, @Genre, @Poster, @PosterUrl, @Plot, @Runtime, @ImdbRating)";
 
     using (SqlCommand cmd = new SqlCommand(query, conn))
     {
@@ -61,6 +61,7 @@ using (SqlConnection conn = new SqlConnection(
         cmd.Parameters.AddWithValue("@Poster", (object?)posterBytes ?? DBNull.Value);
         cmd.Parameters.AddWithValue("@PosterUrl", movie.PosterUrl ?? (object)DBNull.Value);
         cmd.Parameters.AddWithValue("@Plot", movie.Plot ?? (object)DBNull.Value);
+        cmd.Parameters.AddWithValue("@Runtime", movie.Runtime ?? (object)DBNull.Value);
         cmd.Parameters.AddWithValue("@ImdbRating", movie.ImdbRating ?? (object)DBNull.Value);
 
         cmd.ExecuteNonQuery();
@@ -107,8 +108,8 @@ using (SqlConnection conn = new SqlConnection(
     conn.Open();
 
     string query = @"
-       INSERT INTO LFS (Title, Year, Genre, TotalSeasons, Poster, PosterUrl, Plot, ImdbRating)
-        VALUES (@Title , @Year, @Genre, @TotalSeasons, @Poster, @PosterUrl, @Plot, @ImdbRating)";
+       INSERT INTO LFS (Title, Year, Genre, TotalSeasons, Poster, PosterUrl, Plot, Runtime, ImdbRating)
+        VALUES (@Title , @Year, @Genre, @TotalSeasons, @Poster, @PosterUrl, @Plot, @Runtime, @ImdbRating)";
 
     using (SqlCommand cmd = new SqlCommand(query, conn))
     {
@@ -119,6 +120,7 @@ using (SqlConnection conn = new SqlConnection(
         cmd.Parameters.AddWithValue("@Poster", (object?)posterBytes ?? DBNull.Value);
         cmd.Parameters.AddWithValue("@PosterUrl", serie.PosterUrl ?? (object)DBNull.Value);
         cmd.Parameters.AddWithValue("@Plot", serie.Plot ?? (object)DBNull.Value);
+        cmd.Parameters.AddWithValue("@Runtime", serie.Runtime ?? (object)DBNull.Value);
         cmd.Parameters.AddWithValue("@ImdbRating", serie.ImdbRating ?? (object)DBNull.Value);
 
         cmd.ExecuteNonQuery();

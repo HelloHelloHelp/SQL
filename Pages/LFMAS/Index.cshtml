@@ -10,7 +10,8 @@
 			<th>Title</th>
 			<th>Year</th>
 			<th>Genre</th>
-			<th>Restricting age</th>
+			<th>Plot</th>
+			<th>Duration</th>
 			<th>Poster</th>
 			<th>imdbRating</th>
 		</tr>
@@ -24,7 +25,8 @@
 				<td>@movie.Title</td>
 				<td>@movie.Year</td>
 				<td>@movie.Genre</td>
-				<td>@movie.Restricting_age</td>
+				<td>@movie.Plot</td>
+				<td>@movie.Runtime</td>
 				<td>
 					@if (movie.Poster != null)
 					{
@@ -48,9 +50,10 @@
 			<th>Titel</th>
 			<th>Date</th>
 			<th>Genre</th>
-			<th>Restricting age</th>
 			<th>Seasons</th>
 			<th>Poster</th>
+			<th>Plot</th>
+			<th>Duration</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -61,7 +64,6 @@
 				<td>@serie.Title</td>
 				<td>@serie.Year</td>
 				<td>@serie.Genre</td>
-				<td>@serie.Restricting_age</td>
 				<th>@serie.TotalSeasons</th>
 				<td>
 					@if (serie.Poster != null)
@@ -69,6 +71,8 @@
 						<img src="@serie.Poster" alt="Poster" style="width:200px;" />
 					}
 				</td>
+				<th>@serie.Plot</th>
+				<th>serie.Runtime</th>
 		       <th>@serie.ImdbRating</th>
 			</tr>
 		}

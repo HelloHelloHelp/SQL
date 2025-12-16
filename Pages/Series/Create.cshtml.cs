@@ -26,7 +26,6 @@ namespace MoviesAPI.Pages.Series
             serie.Title = Request.Form["Title"];
             serie.Year = Request.Form["Year"].ToString();
             serie.Genre = Request.Form["Genre"];
-            serie.Restricting_age = Request.Form["Restricting_age"].ToString() == "" ? 0 : Convert.ToInt32(Request.Form["Restrcting_age"]);
             serie.Plot = Request.Form["Plot"];
             serie.TotalSeasons = Request.Form["TotalSeasons"];
             serie.ImdbRating = Request.Form["Rating"].ToString();
@@ -38,16 +37,16 @@ namespace MoviesAPI.Pages.Series
                 {
                     connection.Open();
                     String sql = "INSERT INTO series " +
-                                 "(Title, Year, Genre, Restricting_age, TotalSeasons, Plot, ImdbRating) VALUES " +
-                                 "(@Title, @Year, @Genre, @Restricting_age, @TotalSeasons, @Plot, @ImdbRating);";
+                                 "(Title, Year, Genre, TotalSeasons, Plot, Runtime, ImdbRating) VALUES " +
+                                 "(@Title, @Year, @Genre, @TotalSeasons, @Plot, @Runtime, @ImdbRating);";
                     using (SqlCommand command = new SqlCommand(sql, connection))
                     {
                         command.Parameters.AddWithValue("@Title", serie.Title);
                         command.Parameters.AddWithValue("@Year", serie.Year);
                         command.Parameters.AddWithValue("@Genre", serie.Genre);
-                        command.Parameters.AddWithValue("@Restricting_age", serie.Restricting_age);
                         command.Parameters.AddWithValue("@Plot", serie.Plot);
                         command.Parameters.AddWithValue("@TotalSeasons", serie.TotalSeasons);
+                        command.Parameters.AddWithValue("@Runtime", serie.Runtime);
                         command.Parameters.AddWithValue("@ImdbRating", serie.ImdbRating);
                         command.ExecuteNonQuery();
                     }

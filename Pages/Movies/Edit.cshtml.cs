@@ -41,8 +41,8 @@ namespace MoviesAPI.Pages.Movies
                                 movie.Title = reader.GetString("Title");
                                 movie.Year = reader.GetString("Year");
                                 movie.Genre = reader.GetString("Genre");
-                                movie.Restricting_age = reader.GetInt32("Restricting_age");
                                 movie.Plot = reader.GetString("Plot");
+                                movie.Runtime = reader.GetString("Runtime");
                                 movie.ImdbRating = reader.GetString("ImdbRating");
                             }
                         }
@@ -59,7 +59,6 @@ namespace MoviesAPI.Pages.Movies
             movie.Title = Request.Form["Title"];
             movie.Year = Request.Form["Year"];
             movie.Genre = Request.Form["Genre"];
-            movie.Restricting_age = int.Parse(Request.Form["Restricting_age"]);
             movie.Plot = Request.Form["Plot"];
             movie.ImdbRating = Request.Form["ImdbRating"];
 
@@ -69,15 +68,15 @@ namespace MoviesAPI.Pages.Movies
                 {
                     connection.Open();
                     String sql = "UPDATE movies " +
-                                 "SET Title=@Title, Year=@Year, Genre=@Genre, Restricting_age=@Restricting_age, Plot=@Plot,  ImdbRating=@ImdbRating " +
+                                 "SET Title=@Title, Year=@Year, Genre=@Genre, Plot=@Plot, Runtime=@Runtime, ImdbRating=@ImdbRating " +
                                  "WHERE ID=@ID;";
                     using (SqlCommand command = new SqlCommand(sql, connection))
                     {
                         command.Parameters.AddWithValue("@Title", movie.Title);
                         command.Parameters.AddWithValue("@Year", movie.Year);
                         command.Parameters.AddWithValue("@Genre", movie.Genre);
-                        command.Parameters.AddWithValue("@Restricting_age", movie.Restricting_age);
                         command.Parameters.AddWithValue("@Plot", movie.Plot ?? (object)DBNull.Value);
+                        command.Parameters.AddWithValue("@Runtime", movie.Runtime);
                         command.Parameters.AddWithValue("@Watched", movie.Watched);
                         command.Parameters.AddWithValue("@ID", movie.ID);
                         command.Parameters.AddWithValue("@ImdbRating", movie.ImdbRating);

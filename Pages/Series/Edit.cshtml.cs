@@ -41,9 +41,9 @@ namespace MoviesAPI.Pages.Series
                                 serie.Title = reader.GetString("Title");
                                 serie.Year = reader.GetString("Year");
                                 serie.Genre = reader.GetString("Genre");
-                                serie.Restricting_age = reader.GetInt32("Restricting_age");
                                 serie.Plot = reader.GetString("Plot");
                                 serie.TotalSeasons = reader.GetString("TotalSeasons");
+                                serie.Runtime = reader.GetString("Runtime");
                                 serie.ImdbRating = reader.GetString("ImdbRating");
                             }
                         }
@@ -60,9 +60,9 @@ namespace MoviesAPI.Pages.Series
             serie.Title = Request.Form["Title"];
             serie.Year = Request.Form["Year"];
             serie.Genre = Request.Form["Genre"];
-            serie.Restricting_age = int.Parse(Request.Form["Restricting_age"]);
             serie.Plot = Request.Form["Plot"];
             serie.TotalSeasons = Request.Form["TotalSeasons"];
+            serie.Runtime = Request.Form["Runtime"];
             serie.ImdbRating = Request.Form["ImdbRating"];
             var file = Request.Form.Files["Poster"];
 
@@ -83,16 +83,16 @@ namespace MoviesAPI.Pages.Series
                 {
                     connection.Open();
                     String sql = "UPDATE series " +
-                                 "SET Title=@Title, Year=@Year, Genre=@Genre, Restricting_age=@Restricting_age, Plot=@Plot, TotalSeasons=@TotalSeasons " +
+                                 "SET Title=@Title, Year=@Year, Genre=@Genre, Restricting_age=@Restricting_age, Plot=@Plot, TotalSeasons=@TotalSeasons, Runtime=@Runtime " +
                                  "WHERE ID=@ID;";
                     using (SqlCommand command = new SqlCommand(sql, connection))
                     {
                         command.Parameters.AddWithValue("@Title", serie.Title);
                         command.Parameters.AddWithValue("@Year", serie.Year);
                         command.Parameters.AddWithValue("@Genre", serie.Genre);
-                        command.Parameters.AddWithValue("@Restricting_age", serie.Restricting_age);
                         command.Parameters.AddWithValue("@TotalSeasons", serie.TotalSeasons);
                         command.Parameters.AddWithValue("@Plot", serie.Plot);
+                        command.Parameters.AddWithValue("@Runtime", serie.Runtime);
                         command.Parameters.AddWithValue("@Poster", serie.Poster);
                         command.Parameters.AddWithValue("@ID", serie.ID);
                         command.Parameters.AddWithValue("@ImdbRating", serie.ImdbRating);

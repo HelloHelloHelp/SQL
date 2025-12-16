@@ -31,8 +31,8 @@ namespace MoviesAPI.Pages.LFMAS
                                 movie.Title = reader["Title"].ToString();
                                 movie.Year = reader["Year"].ToString();
                                 movie.Genre = reader["Genre"].ToString();
-                                movie.Restricting_age = reader["Restricting_age"] == DBNull.Value ? null : (int)reader["Restricting_age"];
                                 movie.Plot = reader.IsDBNull("Plot") ? null : reader.GetString("Plot");
+                                movie.Runtime = reader["Runtime"].ToString();
                                 movie.ImdbRating = reader["ImdbRating"].ToString();
                                 Movies.Add(movie);
                             }
@@ -71,9 +71,9 @@ namespace MoviesAPI.Pages.LFMAS
                                 serie.Title = reader["Title"].ToString();
                                 serie.Year = reader["Year"].ToString();
                                 serie.Genre = reader["Genre"].ToString();
-                                serie.Restricting_age = reader["Restricting_age"] == DBNull.Value ? null : (int)reader["Restricting_age"];
                                 serie.TotalSeasons = reader["TotalSeasons"].ToString();
                                 serie.Plot = reader.IsDBNull("Plot") ? null : reader.GetString("Plot");
+                                serie.Runtime = reader["runtime"].ToString();
                                 serie.Poster = reader["Poster"] == DBNull.Value ? null : (byte[])reader["Poster"];
                                 serie.ImdbRating = reader["ImdbRating"].ToString();
                                 Series.Add(serie);

@@ -13,7 +13,9 @@ namespace MoviesAPI.Models
         public string? Title { get; set; }
         public string? Year { get; set; }
         public string? Genre { get; set; }
-        public int? Restricting_age { get; set; }
+
+        [JsonProperty("Runtime")]
+        public string? Runtime { get; set; }
 
         [JsonProperty("Plot")]
         public string? Plot { get; set; }
@@ -38,16 +40,16 @@ namespace MoviesAPI.Models
                 : null;
 
         public string? ImdbRating { get; set; }
-        public LFM(string? title, string? year, string? plot, string? genre, int? restricting_age, byte[]? poster,string? posterurl, string? imdbRating)
+        public LFM(string? title, string? year, string? plot, string? runtime, string? genre, byte[]? poster, string? posterurl, string? imdbRating)
         {
             Title = title;
             Plot = plot;
             Year = year;
             Genre = genre;
-            Restricting_age = restricting_age;
             Poster = poster;
             PosterUrl = posterurl;
             ImdbRating = imdbRating;
+            Runtime = runtime;
         }
     }
 }
